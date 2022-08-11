@@ -8,13 +8,30 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": ["@modyfi/vite-plugin-yaml/modules"],
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["esnext", "dom"],
+    "types": [
+      "@modyfi/vite-plugin-yaml/modules"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+    },
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "useDefineForClassFields": true,
     "jsx": "preserve",
     "resolveJsonModule": true,
     "esModuleInterop": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ]
 }

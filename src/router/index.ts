@@ -1,17 +1,39 @@
 import { createRouter, createWebHistory } from "@ionic/vue-router";
 import { RouteRecordRaw } from "vue-router";
+import NavigationView from "@/views/NavigationView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    component: () => import("../views/HomePage.vue"),
+    redirect: "/results",
   },
   {
-    path: "/detail/:id",
-    component: () => import("../views/DetailPage.vue"),
+    path: "/",
+    component: NavigationView,
+    children: [
+      {
+        path: "results",
+        component: () => import("@/views/ResultsView.vue"),
+      },
+      {
+        path: "schedules",
+        component: () => import("@/views/SchedulesView.vue"),
+      },
+      {
+        path: "search",
+        component: () => import("@/views/SearchView.vue"),
+      },
+      {
+        path: "users",
+        component: () => import("@/views/UsersView.vue"),
+      },
+      {
+        path: "charts",
+        component: () => import("@/views/ChartsView.vue"),
+      },
+    ],
   },
 ];
-
 const router = createRouter({
   history: createWebHistory(),
   routes,
