@@ -8,6 +8,20 @@ ion-label {
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+
+  &.num {
+    &::before {
+      content: "x";
+    }
+  }
+
+  &.golden-ikura {
+    color: var(--ion-color-result-golden-ikura) !important;
+  }
+
+  &.ikura {
+    color: var(--ion-color-result-ikura) !important;
+  }
 }
 
 ion-item {
@@ -16,48 +30,4 @@ ion-item {
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-}
-
-ion-row {
-  font-size: 15px;
-}
-
-.result-coop-wave {
-  display: flex;
-}
-
-ion-img {
-  &.coop-weapon-list-item {
-    max-width: 40px;
-  }
-
-  &.supplied-weapon-list-item {
-    height: 28px;
-    width: 28px;
-    // background: var(--ion-border-color);
-    border-radius: 14px;
-  }
-
-  &.supplied-special-item {
-    height: 28px;
-    width: 28px;
-    // background: var(--ion-border-color);
-    border-radius: 14px;
-  }
-
-  &:not(:last-child) {
-    margin-right: 2px;
-  }
-}
-
-.num {
-  &::before {
-    content: "x" !important;
-  }
-}
-
-.danger-rate {
-  &::after {
-    content: "%" !important;
-  }
 }

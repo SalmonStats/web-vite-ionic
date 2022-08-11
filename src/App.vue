@@ -8,4 +8,6 @@ import { IonApp, IonRouterOutlet } from '@ionic/vue';
   </IonApp>
 </template>
 
-<style></style>
+<style>
+@import "@/theme/style.scss";
+</style>

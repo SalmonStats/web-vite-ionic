@@ -1,1 +1,16 @@
-title: English
+job_result:
+  true: Clear
+  false: Failure
+wave_result:
+  water_level:
+    "0": LT
+    "1": NT
+    "2": HT
+  event_type:
+    "0": "-"
+    "1": Rush
+    "2": Goldie Seeking
+    "3": Griller
+    "4": The Mothership
+    "5": Fog
+    "6": Cohock Charge
