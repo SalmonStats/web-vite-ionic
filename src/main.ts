@@ -47,6 +47,7 @@ const i18n = createI18n({
   availableLocales: ["en", "ja"],
 });
 
+console.log(import.meta.env);
 const app = createApp(App)
   .use(IonicVue, {
     animated: true,

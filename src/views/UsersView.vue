@@ -9,6 +9,7 @@ import {
   IonItem,
 } from '@ionic/vue';
 import { useI18n } from 'vue-i18n';
+import CoopHeader from '@/components/CoopHeader.vue';
 
 const { t } = useI18n()
 const items = Array.from(Array(50).keys());
@@ -16,6 +17,14 @@ const items = Array.from(Array(50).keys());
 
 <template>
   <IonPage>
+    <CoopHeader title="Schedules" />
+    <IonContent>
+      <IonList>
+        <template>
+          <CoopResultOverview />
+        </template>
+      </IonList>
+    </IonContent>
   </IonPage>
 </template>
 
