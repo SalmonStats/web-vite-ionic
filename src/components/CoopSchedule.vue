@@ -1,4 +1,3 @@
-import { Schedule } from '@/types/splatnet2';
 <script setup lang="ts">
 import { IonHeader, IonToolbar, IonButton, IonButtons, IonTitle, IonIcon, IonContent, IonItem, IonLabel, IonImg } from '@ionic/vue';
 import { contrastOutline, languageOutline, logoTwitter, snowOutline } from 'ionicons/icons';

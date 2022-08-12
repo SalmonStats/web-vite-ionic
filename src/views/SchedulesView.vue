@@ -30,7 +30,7 @@ onIonViewDidEnter(() => {
 
 <template>
   <IonPage>
-    <CoopHeader title="Schedules" />
+    <CoopHeader :title="t('title.headers.schedules')" />
     <IonContent>
       <IonList>
         <template v-for="schedule in schedules" :key="schedule.start_time">

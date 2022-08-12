@@ -17,7 +17,7 @@ const items = Array.from(Array(50).keys());
 
 <template>
   <IonPage>
-    <CoopHeader title="Search" />
+    <CoopHeader :title="t('title.headers.search')" />
   </IonPage>
 </template>
 

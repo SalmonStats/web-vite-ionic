@@ -37,7 +37,7 @@ onMounted(() => {
 <template>
   <IonPage>
     <IonContent v-if="result !== undefined">
-      <CoopHeader title="Result" />
+      <CoopHeader :title="t('title.headers.result')" />
       <CoopSchedule :schedule="result.schedule" />
       <CoopWave :result="result" />
       <CoopPlayer :players="result.players" />

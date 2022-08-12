@@ -39,7 +39,7 @@ onIonViewWillEnter(() => {
 
 <template>
   <IonPage>
-    <CoopHeader title="Results" />
+    <CoopHeader :title="t('title.headers.results')" />
     <IonContent>
       <template v-for="result in results" :key="result.salmon_id">
         <CoopResultOverview :result="result" />

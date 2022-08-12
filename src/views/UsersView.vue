@@ -17,7 +17,7 @@ const items = Array.from(Array(50).keys());
 
 <template>
   <IonPage>
-    <CoopHeader title="Schedules" />
+    <CoopHeader :title="t('title.headers.users')" />
     <IonContent>
       <IonList>
         <template>

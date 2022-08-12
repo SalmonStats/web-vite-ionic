@@ -21,3 +21,27 @@ schedule:
     5001: Marooner's Bay
     5002: Lost Outpost
     5000: Spawning Grounds
+messages:
+  success:
+    login: "Sign in as %{nickname}."
+  error:
+    "The request does not satisfy the schema": "The request does not satisfy the schema."
+    "The provided session_token_code is expired": "The provided session_token_code is expired."
+    "The provided grant is invalid": "The provided grant is invalid."
+    "Client authentication failed": "Client authentication failed."
+    "Upgrade required.": "X-ProductVersion is required upgrade."
+    "Bad request.": "The request could not be understood due to malformed syntax."
+    "Invalid token.": "Invalid authentication credentials for the requested resource."
+    "Token expired.": "The request includes expired token."
+    "Unauthorized.": "Unauthorized credentials for the requested resource."
+title:
+  headers:
+    signin: Sign In
+    result: Detail
+    results: Results
+    schedules: Schedules
+    search: Search
+    users: Users
+  buttons:
+    open: Open
+    authorize: Authorize
