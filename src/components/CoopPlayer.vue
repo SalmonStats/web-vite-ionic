@@ -23,18 +23,18 @@ Array.prototype.sum = function () {
 
 <template>
   <template v-for="player in players" :key="player.nsaid">
-    <IonItem button :router-link="`/users/${ player.nsaid }`">
+    <IonItem button :router-link="`/users/${player.nsaid}`">
       <div class="coop-player-result">
         <section class="coop-player-result-summary">
-        <IonLabel>
-          {{ player.name}}
-        </IonLabel>
-        <div class="coop-weapon-list">
-          <template v-for="weaponId in player.weapon_list" :key="weaponId">
-            <IonImg class="coop-weapon-item" :src="weaponURL(weaponId)"></IonImg>
-          </template>
-          <IonImg class="coop-weapon-special" :src="specialURL(player.special_id)"></IonImg>
-        </div>
+          <IonLabel>
+            {{ player.name }}
+          </IonLabel>
+          <div class="coop-weapon-list">
+            <template v-for="weaponId in player.weapon_list" :key="weaponId">
+              <IonImg class="coop-weapon-item" :src="weaponURL(weaponId)"></IonImg>
+            </template>
+            <IonImg class="coop-weapon-special" :src="specialURL(player.special_id)"></IonImg>
+          </div>
         </section>
         <section class="coop-player-result-detail">
           <IonLabel class="golden-ikura num">{{ player.golden_ikura_num }}</IonLabel>
@@ -44,7 +44,7 @@ Array.prototype.sum = function () {
         <section class="coop-player-result-detail">
           <IonLabel class="">{{ player.grade_point ?? "-" }}</IonLabel>
           <IonLabel class="num">{{ player.boss_kill_counts.sum() }}</IonLabel>
-          <IonLabel class="num">{{ player.dead_count}}</IonLabel>
+          <IonLabel class="num">{{ player.dead_count }}</IonLabel>
         </section>
       </div>
     </IonItem>
@@ -77,14 +77,15 @@ Array.prototype.sum = function () {
 
 ion-img {
   &.coop-weapon-item {
-    width: 35px;
+    width: 30px;
     aspect-ratio: 1;
-    max-width: 35px;
+    max-width: 30px;
   }
+
   &.coop-weapon-special {
-    width: 35px;
+    width: 30px;
     aspect-ratio: 1;
-    max-width: 35px;
+    max-width: 30px;
   }
 }
 </style>

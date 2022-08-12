@@ -61,6 +61,10 @@ const props = defineProps<{
   display: flex;
   width: 40%;
   justify-content: flex-end;
+
+  :not(:last-child) {
+    margin-right: 4px;
+  }
 }
 
 ion-img {

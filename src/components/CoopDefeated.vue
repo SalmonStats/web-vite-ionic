@@ -1,12 +1,9 @@
 import { Schedule } from '@/types/splatnet2';
 <script setup lang="ts">
-import { IonHeader, IonToolbar, IonButton, IonButtons, IonTitle, IonIcon, IonContent, IonItem, IonLabel, IonImg } from '@ionic/vue';
-import { contrastOutline, languageOutline, logoTwitter, snowOutline } from 'ionicons/icons';
-import { onMounted } from 'vue';
+import { IonItem, IonLabel, IonImg } from '@ionic/vue';
 import { useI18n } from 'vue-i18n'
-import dayjs from 'dayjs';
-import { PlayerResult, Result, WaveResult } from '@/types/splatnet2';
-import { weaponURL, specialURL, bossURL } from '@/functions';
+import { Result } from '@/types/splatnet2';
+import { bossURL } from '@/functions';
 
 const { t } = useI18n()
 
@@ -27,11 +24,12 @@ Array.prototype.sum = function () {
       <div class="coop-result-player-boss-defeated">
         <IonImg class="coop-result-boss-defeated" :src="bossURL(index)"></IonImg>
         <template v-for="player in result.players" :key="player.nsaid">
-          <IonLabel class="coop-result-boss-defeated-num">{{ player.boss_kill_counts[index]}}</IonLabel>
+          <IonLabel class="coop-result-boss-defeated-num">{{ player.boss_kill_counts[index] }}</IonLabel>
         </template>
         <IonLabel class="coop-result-boss-defeated-total" :class="result.boss_counts[index] === result.players.map(player =>
-          player.boss_kill_counts[index]).sum() ? 'defeated' : ''">{{ ("00" + result.players.map(player =>
-          player.boss_kill_counts[index]).sum()).slice(-2) }}/{{ ("00" + result.boss_counts[index]).slice(-2) }}
+        player.boss_kill_counts[index]).sum() ? 'defeated' : ''">{{ ("00" + result.players.map(player =>
+      player.boss_kill_counts[index]).sum()).slice(-2)
+  }}/{{ ("00" + result.boss_counts[index]).slice(-2) }}
         </IonLabel>
       </div>
     </IonItem>
@@ -64,8 +62,8 @@ ion-label {
     width: calc((100% - 25%) / 4) !important;
     text-align: center;
     line-height: 250%;
-}
-  
+  }
+
   &.coop-result-boss-defeated-total {
     font-weight: 600;
     width: 25% !important;

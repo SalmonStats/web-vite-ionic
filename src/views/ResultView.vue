@@ -39,7 +39,7 @@ onMounted(() => {
     <IonContent v-if="result !== undefined">
       <CoopHeader title="Result" />
       <CoopSchedule :schedule="result.schedule" />
-      <CoopWave :waves="result.waves" />
+      <CoopWave :result="result" />
       <CoopPlayer :players="result.players" />
       <CoopDefeated :result="result" />
     </IonContent>

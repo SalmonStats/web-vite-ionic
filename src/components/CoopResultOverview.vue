@@ -15,7 +15,7 @@ const props = defineProps<{
     <div class="coop-result">
       <section class="coop-result-overview">
         <IonLabel>
-          {{ t(`job_result.${result.job_result.is_clear}`)}}
+          {{ t(`job_result.${result.job_result.is_clear}`) }}
         </IonLabel>
         <IonLabel>
           {{ result.danger_rate }}%
@@ -24,8 +24,9 @@ const props = defineProps<{
       <section class="coop-result-waves">
         <template v-for="wave in result.waves" :key="wave.quota_num">
           <IonLabel>
-            {{ t(`wave_result.water_level.${wave.water_level}`)}} {{
-            t(`wave_result.event_type.${wave.event_type}`)}}
+            {{ t(`wave_result.water_level.${wave.water_level}`) }} {{
+                t(`wave_result.event_type.${wave.event_type}`)
+            }}
           </IonLabel>
         </template>
       </section>
@@ -64,7 +65,7 @@ const props = defineProps<{
     font-size: 14px;
     width: 52%;
   }
-  
+
   .coop-result-eggs {
     font-size: 14px;
     width: 35%;
@@ -73,7 +74,11 @@ const props = defineProps<{
 
   .coop-result-weapon-list {
     display: flex;
-    justify-content: flex-end
+    justify-content: flex-end;
+
+    :not(:last-child) {
+      margin-right: 4px;
+    }
   }
 
   .coop-result-weapon-item {
