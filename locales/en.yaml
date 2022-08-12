@@ -14,3 +14,10 @@ wave_result:
     "4": The Mothership
     "5": Fog
     "6": Cohock Charge
+schedule:
+  stage:
+    5003: Salmonid Smokeyard
+    5004: Ruins of Ark Polaris
+    5001: Marooner's Bay
+    5002: Lost Outpost
+    5000: Spawning Grounds

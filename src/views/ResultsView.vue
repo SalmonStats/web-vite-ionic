@@ -18,7 +18,7 @@ import CoopHeader from '@/components/CoopHeader.vue';
 import axios from 'axios';
 import { onMounted } from 'vue';
 import { ref, Ref } from 'vue';
-import { Result, Results } from '@/types/splatnet2';
+import { Result } from '@/types/splatnet2';
 import CoopResultOverview from '@/components/CoopResultOverview.vue';
 
 const { t } = useI18n()

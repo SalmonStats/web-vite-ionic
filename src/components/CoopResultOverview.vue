@@ -57,6 +57,7 @@ const props = defineProps<{
   .coop-result-overview {
     font-size: 14px;
     width: 18%;
+    max-width: 80px;
   }
 
   .coop-result-waves {
@@ -72,6 +73,7 @@ const props = defineProps<{
 
   .coop-result-weapon-list {
     display: flex;
+    justify-content: flex-end
   }
 
   .coop-result-weapon-item {

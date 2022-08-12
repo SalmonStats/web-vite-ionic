@@ -17,10 +17,12 @@ ion-label {
 
   &.golden-ikura {
     color: var(--ion-color-result-golden-ikura) !important;
+    font-weight: 600;
   }
 
   &.ikura {
     color: var(--ion-color-result-ikura) !important;
+    font-weight: 600;
   }
 }
 
