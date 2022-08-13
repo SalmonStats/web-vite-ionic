@@ -9,7 +9,8 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "@modyfi/vite-plugin-yaml/modules"
+      "@modyfi/vite-plugin-yaml/modules",
+      "vite/client"
     ],
     "typeRoots": [
       "node_modules/@types"
