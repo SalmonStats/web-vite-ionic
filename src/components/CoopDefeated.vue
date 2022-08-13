@@ -60,14 +60,14 @@ ion-label {
 
   &.coop-result-boss-defeated-num {
     width: calc((100% - 25%) / 4) !important;
-    text-align: center;
+    text-align: right;
     line-height: 250%;
   }
 
   &.coop-result-boss-defeated-total {
     font-weight: 600;
     width: 25% !important;
-    text-align: center;
+    text-align: right;
     line-height: 250%;
   }
 }

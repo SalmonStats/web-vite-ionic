@@ -11,26 +11,24 @@ import CoopSchedule from '@/components/CoopSchedule.vue';
 import CoopWave from '@/components/CoopWave.vue';
 import CoopPlayer from '@/components/CoopPlayer.vue';
 import CoopDefeated from '@/components/CoopDefeated.vue';
+
+const router = useRoute()
 const { t } = useI18n()
 
 const result: Ref<Result | undefined> = ref<Result>()
 
-function onLoad() {
-  const { result_id } = useRoute().params
+async function onLoad() {
+  const { result_id } = router.params
   const url = `${import.meta.env.VITE_APP_URL}/results/${result_id}`
-  fetch(url)
-    .then(res => res.json())
-    .then((res: Result) => {
-      result.value = res
-    })
+  result.value = (await (await fetch(url)).json())
 }
 
-onIonViewDidEnter(() => {
-  onLoad()
+onIonViewDidEnter(async () => {
+  await onLoad()
 })
 
-onMounted(() => {
-  onLoad()
+onMounted(async () => {
+  await onLoad()
 })
 </script>
 

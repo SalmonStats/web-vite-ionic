@@ -14,6 +14,7 @@ import CoopHeader from '@/components/CoopHeader.vue';
 import CoopSchedule from '@/components/CoopSchedule.vue';
 import { Schedule } from '@/types/splatnet2';
 import { Ref, ref } from 'vue';
+import { Paginated } from '@/types/common';
 
 const { t } = useI18n()
 const schedules: Ref<Schedule[]> = ref<Schedule[]>([])

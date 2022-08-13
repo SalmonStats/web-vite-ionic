@@ -37,15 +37,18 @@ async function signIn() {
   }
 
   try {
+    // レスポンス
     const response = JSON.stringify((await axios.post(url, parameters)).data)
+    // アカウント
     const account: SplatNet2 = JSON.parse(response) as SplatNet2
     const toast = await toastController
       .create({
         message: t("messages.success.login", { nickname: account.nickname }),
         duration: 2000
       })
+    // アカウント情報の保存
+    localStorage.setItem('account', JSON.stringify(account))
     return toast.present()
-    console.log(response)
   } catch (error) {
     const { error_description, errorMessage } = ((error as AxiosError).response?.data as APIError)
     const toast = await toastController

@@ -32,6 +32,10 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/UsersView.vue"),
       },
       {
+        path: "users/:nsaid",
+        component: () => import("@/views/UsersView.vue"),
+      },
+      {
         path: "login",
         component: () => import("@/views/SignInView.vue"),
       },

@@ -35,6 +35,8 @@ messages:
     "Token expired.": "The request includes expired token."
     "Unauthorized.": "Unauthorized credentials for the requested resource."
 title:
+  labels:
+    results: Results
   headers:
     signin: Sign In
     result: Detail
