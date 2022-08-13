@@ -10,14 +10,17 @@ import {
 } from '@ionic/vue';
 import { useI18n } from 'vue-i18n';
 import CoopHeader from '@/components/CoopHeader.vue';
+import SearchBar from '@/components/SearchBar.vue';
 
 const { t } = useI18n()
-const items = Array.from(Array(50).keys());
 </script>
 
 <template>
   <IonPage>
     <CoopHeader :title="t('title.headers.search')" />
+    <IonContent>
+      <SearchBar />
+    </IonContent>
   </IonPage>
 </template>
 

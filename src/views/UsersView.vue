@@ -62,7 +62,7 @@ onIonViewDidEnter(() => {
 
 <template>
   <IonPage>
-    <CoopHeader :title="t('title.headers.users')" />
+    <CoopHeader :title="player?.nickname ?? t('title.headers.users')" />
     <IonContent>
       <template v-if="player !== undefined">
         <CoopUser :player="player" />

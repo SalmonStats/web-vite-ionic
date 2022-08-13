@@ -17,8 +17,8 @@ const props = defineProps<{
           <IonLabel>{{ t(`schedule.stage.${result.stage_id}`) }}</IonLabel>
         </section>
         <section class="coop-player-stage-record">
-          <IonLabel>{{ t("results.night") }} {{ result.night.team_results.golden_ikura_num }}</IonLabel>
-          <IonLabel>{{ t("results.nightless") }} {{ result.nightless.team_results.golden_ikura_num }}</IonLabel>
+          <IonLabel>{{ t("results.night") }} {{ result.night.team_results.golden_ikura_num ?? '-' }}</IonLabel>
+          <IonLabel>{{ t("results.nightless") }} {{ result.nightless.team_results.golden_ikura_num ?? '-' }}</IonLabel>
         </section>
       </div>
     </IonItem>

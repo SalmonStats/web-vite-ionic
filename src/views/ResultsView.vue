@@ -1,19 +1,13 @@
 <script setup lang="ts">
 import {
   IonContent,
-  IonHeader,
   IonPage,
-  IonTitle,
-  IonToolbar,
   IonList,
-  IonItem,
-  onIonViewWillEnter,
   IonRefresher,
   IonRefresherContent,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   InfiniteScrollCustomEvent,
-  getPlatforms,
   isPlatform
 } from '@ionic/vue';
 import { useI18n } from 'vue-i18n';

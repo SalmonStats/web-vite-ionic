@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { IonItem, IonLabel, IonImg, IonPage, IonContent, onIonViewDidEnter } from '@ionic/vue';
+import { IonPage, IonContent } from '@ionic/vue';
 import { onMounted, Ref, ref } from 'vue';
-import axios from 'axios';
 import { useI18n } from 'vue-i18n'
 import { Result } from '@/types/splatnet2';
 import { useRoute } from 'vue-router';
-import { weaponURL } from '@/functions';
 import CoopHeader from '@/components/CoopHeader.vue';
 import CoopSchedule from '@/components/CoopSchedule.vue';
 import CoopWave from '@/components/CoopWave.vue';

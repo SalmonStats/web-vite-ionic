@@ -12,35 +12,35 @@ const routes: Array<RouteRecordRaw> = [
     component: NavigationView,
     children: [
       {
-        path: "results",
+        path: "/results",
         component: () => import("@/views/ResultsView.vue"),
       },
       {
-        path: "results/:result_id",
+        path: "/results/:result_id",
         component: () => import("@/views/ResultView.vue"),
       },
       {
-        path: "schedules",
+        path: "/schedules",
         component: () => import("@/views/SchedulesView.vue"),
       },
       {
-        path: "search",
+        path: "/search",
         component: () => import("@/views/SearchView.vue"),
       },
       {
-        path: "users",
+        path: "/users",
         component: () => import("@/views/UsersView.vue"),
       },
       {
-        path: "users/:nsaid",
+        path: "/users/:nsaid",
         component: () => import("@/views/UsersView.vue"),
       },
       {
-        path: "login",
+        path: "/login",
         component: () => import("@/views/SignInView.vue"),
       },
       {
-        path: "charts",
+        path: "/charts",
         component: () => import("@/views/ChartsView.vue"),
       },
     ],

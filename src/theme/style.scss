@@ -33,3 +33,10 @@ ion-item {
   -webkit-user-select: none;
   user-select: none;
 }
+
+ion-label {
+  &.nsaid {
+    font-size: 12px !important;
+    color: var(--ion-color-text-secondary) !important;
+  }
+}

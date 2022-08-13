@@ -1,3 +1,10 @@
+export type Search = {
+  nsaid: string;
+  nickname: string;
+  thumbnail_url: string;
+  is_imperial_scholars: boolean;
+};
+
 export type Player = {
   /** プレイヤーID */
   nsaid: string;

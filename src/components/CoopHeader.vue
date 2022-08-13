@@ -31,10 +31,10 @@ function changeTheme() {
 <template>
   <IonHeader>
     <IonToolbar>
-      <IonButtons slot="start" router-link="/users">
+      <!-- <IonButtons slot="start" router-link="/">
         <IonIcon :icon="snowOutline" slot="icon-only">
         </IonIcon>
-      </IonButtons>
+      </IonButtons> -->
       <IonButtons slot="primary">
         <IonButton @click="changeLanguages">
           <IonIcon slot="icon-only" :icon="languageOutline">
