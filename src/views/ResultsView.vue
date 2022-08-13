@@ -9,7 +9,13 @@ import {
   IonInfiniteScrollContent,
   InfiniteScrollCustomEvent,
   isPlatform,
+  IonToolbar,
+  IonItem,
+  IonIcon,
+  IonLabel,
+  IonButton
 } from '@ionic/vue';
+import { filterOutline } from 'ionicons/icons';
 import { useI18n } from 'vue-i18n';
 import CoopHeader from '@/components/CoopHeader.vue';
 import axios from 'axios';
@@ -19,6 +25,7 @@ import { Result } from '@/types/splatnet2';
 import CoopResultOverview from '@/components/CoopResultOverview.vue';
 import { Paginated, Parameters } from '@/types/common';
 import { SortType } from '@/types/enum';
+import ModalButton from '../components/ModalButton.vue';
 
 const { t } = useI18n()
 const results: Ref<Result[]> = ref<Result[]>([])
@@ -68,6 +75,7 @@ onMounted(async () => {
   <IonPage>
     <CoopHeader :title="t('title.headers.results')" />
     <IonContent>
+      <ModalButton />
       <IonRefresher @ion-refresh="onRefresh($event)" slot="fixed">
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
