@@ -32,7 +32,6 @@ export type CoopSummary = {
 
 export interface Parameters {
   limit: number;
-  offset: number;
   sort: SortType;
   order: OrderType;
   nightless: boolean;

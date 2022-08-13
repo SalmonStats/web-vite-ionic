@@ -24,20 +24,48 @@ import { ref, Ref } from 'vue';
 import { Result } from '@/types/splatnet2';
 import CoopResultOverview from '@/components/CoopResultOverview.vue';
 import { Paginated, Parameters } from '@/types/common';
-import { SortType } from '@/types/enum';
+import { OrderType, SortType } from '@/types/enum';
 import ModalButton from '../components/ModalButton.vue';
 
 const { t } = useI18n()
 const results: Ref<Result[]> = ref<Result[]>([])
 
-// const emit = defineEmits<Parameters>()
-const sortType: Ref<SortType> = ref<SortType>(SortType.CREATED)
+const parameters: Ref<Parameters> = ref<Parameters>({
+  // 受け取ったデータで初期化する
+  limit: 15,
+  sort: SortType.CREATED,
+  order: OrderType.DESC,
+  nightless: false,
+  golden_ikura_num: 100,
+  ikura_num: 1000,
+  is_clear: true
+})
 
 async function onLoad(offset: number = 0) {
+  if (offset === 0) {
+    results.value = []
+  }
   // タブレットやPCの場合は50件取得、その他は15件取得
-  const limit: number = (isPlatform('desktop') || isPlatform('phablet')) ? 50 : 15
+  const sortType: SortType = parameters.value.sort
+  const limit: number = (isPlatform('desktop') || isPlatform('phablet')) ? 50 : parameters.value.limit
+  const orderType: OrderType = parameters.value.order
+  const nightless: boolean = parameters.value.nightless
+  const golden_ikura_num: number = parameters.value.golden_ikura_num
+  const ikura_num: number = parameters.value.ikura_num
   console.log(`Loading Results: Offset: ${offset} Limit: ${limit}`)
-  const url: string = `${import.meta.env.VITE_APP_URL}/results?limit=${limit}&offset=${offset}&sort=${sortType.value}&order=desc`
+  const params: URLSearchParams = new URLSearchParams({
+    limit: limit.toString(),
+    offset: offset.toString(),
+    sort: sortType.toString(),
+    order: orderType.toString(),
+    ikura_num: ikura_num.toString(),
+    golden_ikura_num: golden_ikura_num.toString(),
+  })
+  if (nightless) {
+    params.append('night_less', 'true')
+  }
+  console.log(params.toString())
+  const url: string = `${import.meta.env.VITE_APP_URL}/results?${params.toString()}`
   const response: Paginated<Result> = (await axios.get(url)).data
   response.results.forEach((result: Result) => {
     results.value.push(result)
@@ -60,9 +88,9 @@ function getResults(event: InfiniteScrollCustomEvent) {
   }, 1000)
 }
 
-async function changeOrder(event: CustomEvent) {
-  sortType.value = Object.values(SortType)[Object.values(SortType).indexOf(event.detail.value)] as SortType
-  results.value = []
+// 返ってきたパラメータを上書きする
+async function setParams(value: Parameters) {
+  parameters.value = value
   await onLoad()
 }
 
@@ -75,7 +103,7 @@ onMounted(async () => {
   <IonPage>
     <CoopHeader :title="t('title.headers.results')" />
     <IonContent>
-      <ModalButton />
+      <ModalButton :parameters="parameters" @parameters="setParams" />
       <IonRefresher @ion-refresh="onRefresh($event)" slot="fixed">
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>

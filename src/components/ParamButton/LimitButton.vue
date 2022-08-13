@@ -1,15 +1,29 @@
 <script setup lang="ts">
 import { IonItem, IonLabel, IonSelect, IonSelectOption } from '@ionic/vue';
 import { useI18n } from 'vue-i18n'
-import { SortType } from '@/types/enum';
+import { Parameters } from '@/types/common';
+
+interface Emits {
+  (e: 'limit', value: number): void;
+}
+const { t } = useI18n()
+const emit = defineEmits<Emits>();
+
+const props = defineProps<{
+  parameters: Parameters
+}>()
+
+function changedValue(event: CustomEvent) {
+  emit('limit', event.detail.value);
+}
 </script>
 
 <template>
   <IonItem>
     <IonLabel>取得件数</IonLabel>
-    <IonSelect interface="action-sheet">
-      <template v-for="limit in [10, 20, 50, 100]" :key="limit">
-        <IonSelectOption>{{ limit }}</IonSelectOption>
+    <IonSelect interface="action-sheet" @ion-change="changedValue" :value="props.parameters.limit">
+      <template v-for="limit in [15, 25, 50, 100]" :key="limit">
+        <IonSelectOption :value="limit">{{ limit }}</IonSelectOption>
       </template>
     </IonSelect>
   </IonItem>

@@ -50,3 +50,9 @@ title:
   buttons:
     open: Open
     authorize: Authorize
+select:
+  labels:
+    salmon_id: ID
+    golden_ikura_num: 金イクラ納品数
+    ikura_num: イクラ獲得数
+    play_time: プレイ時間
