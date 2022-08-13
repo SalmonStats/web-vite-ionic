@@ -18,18 +18,20 @@ const { t } = useI18n()
 const result: Ref<Result | undefined> = ref<Result>()
 
 async function onLoad() {
+  console.log("Loading Results")
   const { result_id } = router.params
   const url = `${import.meta.env.VITE_APP_URL}/results/${result_id}`
   result.value = (await (await fetch(url)).json())
 }
 
-onIonViewDidEnter(async () => {
-  await onLoad()
-})
-
 onMounted(async () => {
   await onLoad()
 })
+
+// 表示するたびに呼ばれる
+// onIonViewDidEnter(async () => {
+//   await onLoad()
+// })
 </script>
 
 <template>

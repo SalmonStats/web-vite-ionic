@@ -1,6 +1,9 @@
 job_result:
   true: Clear
   false: Failure
+results:
+  nightless: Nightless
+  night: Night
 wave_result:
   water_level:
     "0": LT

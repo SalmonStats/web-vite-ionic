@@ -1,6 +1,9 @@
 job_result:
   true: Clear!
   false: Defeat!
+results:
+  nightless: 夜
+  night: 昼
 wave_result:
   event_type:
     "0": "-"
