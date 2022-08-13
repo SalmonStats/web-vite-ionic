@@ -1,0 +1,59 @@
+Arguments: 
+  /Users/devonly/.nvm/versions/node/v16.15.0/bin/node /opt/homebrew/Cellar/yarn/1.22.19/libexec/bin/yarn.js install
+
+PATH: 
+  /Users/devonly/.nvm/versions/node/v16.15.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/devkitpro/tools/bin:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/devonly/.nvm/versions/node/v16.15.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/devonly/.fig/bin:/Users/devonly/.local/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.15.0
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  SyntaxError: /Users/devonly/Developer/web-vite-ionic/package.json: Unexpected token } in JSON at position 320
+      at JSON.parse (<anonymous>)
+      at /opt/homebrew/Cellar/yarn/1.22.19/libexec/lib/cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (/opt/homebrew/Cellar/yarn/1.22.19/libexec/lib/cli.js:310:30)
+      at /opt/homebrew/Cellar/yarn/1.22.19/libexec/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "tmp-vue",
+    "version": "0.0.0",
+    "scripts": {
+      "dev": "vite",
+      "build": "vue-tsc --noEmit && vite build",
+      "preview": "vite preview"
+    },
+    "dependencies": {
+      "@ionic/vue": "^6.1.15",
+      "@ionic/vue-router": "^6.1.15",
+      "axios": "^0.27.2",
+      "vue": "^3.2.25",
+      "vue-i18n": "^9.2.2",
+    },
+    "devDependencies": {
+      "@intlify/vite-plugin-vue-i18n": "^6.0.0",
+      "@modyfi/vite-plugin-yaml": "^1.0.2",
+      "@vitejs/plugin-vue": "^2.0.0",
+      "dayjs": "^1.11.4",
+      "sass": "^1.54.3",
+      "sass-loader": "^13.0.2",
+      "typescript": "^4.4.4",
+      "vite": "^3.0.7",
+      "vite-plugin-pwa": "^0.12.3",
+      "vue-cli-plugin-yaml": "^1.0.2",
+      "vue-tsc": "^0.29.8"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
