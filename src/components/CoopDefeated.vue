@@ -49,6 +49,8 @@ Array.prototype.sum = function () {
 
 ion-img {
   &.coop-result-boss-defeated {
+    aspect-ratio: 1;
+    max-height: 40px;
     max-width: 40px;
   }
 }

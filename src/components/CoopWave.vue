@@ -70,11 +70,12 @@ const specialUsages = (() => {
 }
 
 .coop-wave-result-summary {
-  width: calc(100% - 80px - 112px);
+  max-width: 100%;
+  width: calc(100% - 94px - 112px);
 }
 
 .coop-wave-result-detail {
-  width: 80px;
+  width: 94px;
   text-align: right;
 }
 
@@ -84,9 +85,9 @@ const specialUsages = (() => {
 }
 
 .coop-special-item {
+  height: 25px;
   width: 25px;
 }
-
 
 ul {
   &.coop-wave-result-special-list {

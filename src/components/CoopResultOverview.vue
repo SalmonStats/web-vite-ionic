@@ -82,6 +82,7 @@ const props = defineProps<{
   }
 
   .coop-result-weapon-item {
+    aspect-ratio: 1;
     width: 25%;
     max-width: 35px;
     background-color: var(--ion-color-step-450);

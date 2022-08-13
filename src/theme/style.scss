@@ -2,41 +2,43 @@
   font-family: var(--ion-default-font-family) !important;
 }
 
+html {
+  touch-action: manipulation;
+}
+
 ion-label {
-  -ms-user-select: none; /* IE 10+ */
+  -ms-user-select: none;
+  /* IE 10+ */
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
 
-  &.num {
-    &::before {
-      content: "x";
-    }
-  }
+ion-label.num::before {
+  content: "x";
+}
 
-  &.golden-ikura {
-    color: var(--ion-color-result-golden-ikura) !important;
-    font-weight: 600;
-  }
+ion-label.golden-ikura {
+  color: var(--ion-color-result-golden-ikura) !important;
+  font-weight: 600;
+}
 
-  &.ikura {
-    color: var(--ion-color-result-ikura) !important;
-    font-weight: 600;
-  }
+ion-label.ikura {
+  color: var(--ion-color-result-ikura) !important;
+  font-weight: 600;
 }
 
 ion-item {
-  -ms-user-select: none; /* IE 10+ */
+  -ms-user-select: none;
+  /* IE 10+ */
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
 }
 
-ion-label {
-  &.nsaid {
-    font-size: 12px !important;
-    color: var(--ion-color-text-secondary) !important;
-  }
+ion-label.nsaid {
+  font-size: 12px !important;
+  color: var(--ion-color-text-secondary) !important;
 }

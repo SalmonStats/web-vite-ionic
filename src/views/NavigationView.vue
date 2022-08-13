@@ -8,7 +8,7 @@ import { earthOutline, pieChartOutline, trailSignOutline, personOutline, searchO
     <IonTabs>
       <IonRouterOutlet></IonRouterOutlet>
       <IonTabBar slot="bottom">
-        <IonTabButton tab="results" href="/">
+        <IonTabButton tab="results" href="/results">
           <IonIcon :icon="earthOutline" />
           <IonLabel>Results</IonLabel>
         </IonTabButton>
