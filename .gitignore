@@ -5,5 +5,4 @@ dist-ssr
 *.local
 .firebase
 .firebaserc
-.env
 .env.production
