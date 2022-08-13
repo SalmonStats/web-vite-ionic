@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import CoopHeader from '@/components/CoopHeader.vue';
 import { ref, Ref } from 'vue';
 import axios, { AxiosError } from "axios";
-import { SplatNet2 } from '@/types/enum';
+import { SplatNet2 } from '@/types/common';
 import CoopAccount from '@/components/CoopAccount.vue';
 
 const { t, availableLocales, locale } = useI18n()

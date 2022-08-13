@@ -2,7 +2,7 @@
 import { IonItem, IonLabel, IonImg, IonFab, IonFabButton, IonIcon, toastController } from '@ionic/vue';
 import { useI18n } from 'vue-i18n'
 import { syncOutline } from 'ionicons/icons';
-import { SplatNet2 } from '@/types/enum';
+import { SplatNet2 } from '@/types/common';
 import { bossURL } from '@/functions';
 import axios from 'axios';
 

@@ -3,9 +3,6 @@ import { IonItem, IonLabel, IonImg, IonFab, IonFabButton, IonIcon, modalControll
 import { useI18n } from 'vue-i18n'
 import ParamView from '@/views/ParamView.vue';
 import { filterOutline } from 'ionicons/icons';
-import { OrderType, SortType, SplatNet2 } from '@/types/enum';
-import { bossURL } from '@/functions';
-import axios from 'axios';
 import { Parameters } from '@/types/common';
 import { ref, Ref } from 'vue';
 

@@ -2,7 +2,7 @@
 import { IonHeader, IonToolbar, IonButton, IonButtons, IonTitle, IonIcon, IonContent, IonItem, IonLabel, IonImg, IonItemGroup, IonInput, toastController } from '@ionic/vue';
 import axios, { AxiosError } from 'axios';
 import { openOutline } from 'ionicons/icons';
-import { APIError, SplatNet2 } from '@/types/enum';
+import { APIError, SplatNet2 } from '@/types/common';
 import { onMounted, Ref, ref } from 'vue';
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()

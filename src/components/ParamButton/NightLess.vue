@@ -4,7 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { Parameters } from '@/types/common';
 
 interface Emits {
-  (e: 'nightless', value: boolean | undefined): void;
+  (e: 'nightless', value: boolean): void;
 }
 
 const { t } = useI18n()

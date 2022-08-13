@@ -70,7 +70,7 @@ async function dismiss() {
       <SortButton :parameters=parameters @sort_type="(value) => parameters.sort = value" />
       <GoldenIkura :parameters="parameters" @golden_ikura_num="(value) => parameters.golden_ikura_num = value" />
       <Ikura :parameters="parameters" @ikura_num="(value) => parameters.ikura_num = value" />
-      <NightLess :parameters="parameters" @nightless="(value) => parameters.nightless = value" />
+      <NightLess :parameters="parameters" @nightless="(value: boolean) => parameters.nightless = value" />
       <StageButton />
     </IonList>
   </IonContent>
