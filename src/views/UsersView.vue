@@ -12,7 +12,7 @@ import {
 import { useI18n } from 'vue-i18n';
 import CoopHeader from '@/components/CoopHeader.vue';
 import CoopButton from '@/components/CoopButton.vue';
-import { SplatNet2 } from '@/types/common';
+import { SplatNet2 } from '@/types/enum';
 import { Player } from '@/types/salmonstats';
 import { onMounted, Ref, ref } from 'vue';
 import CoopUser from '../components/CoopUser.vue';

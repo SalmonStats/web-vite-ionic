@@ -29,3 +29,14 @@ export type CoopSummary = {
   kuma_point: number;
   kuma_point_total: number;
 };
+
+export interface Parameters {
+  limit: number;
+  offset: number;
+  sort: SortType;
+  order: OrderType;
+  nightless: boolean;
+  golden_ikura_num: number;
+  ikura_num: number;
+  is_clear: boolean;
+}
