@@ -2,8 +2,8 @@ job_result:
   true: Clear!
   false: Defeat!
 results:
-  nightless: 夜
-  night: 昼
+  nightless: 昼
+  night: 夜
 wave_result:
   event_type:
     "0": "-"
@@ -39,8 +39,11 @@ messages:
     "Token expired.": "トークンが有効期限切れです"
     "Unauthorized.": "認証されていません"
 title:
+  labels:
+    login: ログイン
   headers:
-    signin: ログイン
+    account: アカウント
+    login: ログイン
     result: リザルト詳細
     results: リザルト一覧
     schedules: スケジュール

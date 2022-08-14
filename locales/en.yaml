@@ -39,9 +39,14 @@ messages:
     "Unauthorized.": "Unauthorized credentials for the requested resource."
 title:
   labels:
+    login: Sign In
     results: Results
+    theme: Theme
+    appearances: Appearances
+    languages: Languages
   headers:
-    signin: Sign In
+    account: Account
+    login: Sign In
     result: Detail
     results: Results
     schedules: Schedules

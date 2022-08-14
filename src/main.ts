@@ -33,10 +33,14 @@ import "./theme/style.scss";
 import { createI18n } from "vue-i18n";
 import ja from "/locales/ja.yaml";
 import en from "/locales/en.yaml";
+import { getDeviceThemeParams } from "@/types/common/appearances";
+
+/* ローカルデータを取得 */
+const { theme, lang } = getDeviceThemeParams();
 
 const i18n = createI18n({
   legacy: false,
-  locale: "en",
+  locale: lang,
   allowComposition: true,
   messages: {
     ja: ja,
@@ -47,7 +51,6 @@ const i18n = createI18n({
   availableLocales: ["en", "ja"],
 });
 
-console.log(import.meta.env);
 const app = createApp(App)
   .use(IonicVue, {
     animated: true,

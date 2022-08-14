@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
+import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet, IonModal } from '@ionic/vue';
 import { earthOutline, pieChartOutline, trailSignOutline, personOutline, searchOutline } from 'ionicons/icons';
+import SignInView from './SignInView.vue';
 </script>
 
 <template>

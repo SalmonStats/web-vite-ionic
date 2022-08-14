@@ -1,4 +1,4 @@
-type Paginated<T> = {
+export type Paginated<T> = {
   limit: number;
   offset: number;
   results: T[];
@@ -39,3 +39,8 @@ export interface Parameters {
   ikura_num: number;
   is_clear: boolean;
 }
+
+export type Appearances = {
+  lang: string;
+  theme: string;
+};

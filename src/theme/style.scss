@@ -6,6 +6,12 @@ html {
   touch-action: manipulation;
 }
 
+ion-item,
+ion-searchbar {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 ion-label {
   -ms-user-select: none;
   /* IE 10+ */

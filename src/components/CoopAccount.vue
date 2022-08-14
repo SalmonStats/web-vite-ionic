@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IonHeader, IonToolbar, IonButton, IonButtons, IonTitle, IonIcon, IonContent, IonItem, IonLabel, IonImg, IonItemGroup, IonInput, toastController } from '@ionic/vue';
+import { IonButton, IonIcon, IonItem, IonLabel, IonItemGroup, IonInput, toastController, IonListHeader } from '@ionic/vue';
 import axios, { AxiosError } from 'axios';
 import { openOutline } from 'ionicons/icons';
 import { APIError, SplatNet2 } from '@/types/common';
@@ -71,8 +71,11 @@ onMounted(() => {
 
 <template>
   <IonItemGroup>
+    <IonListHeader lines="none" mode="ios">
+      <IonLabel>Nintendo</IonLabel>
+    </IonListHeader>
     <IonItem>
-      <IonLabel>{{ t("title.headers.signin") }}</IonLabel>
+      <IonLabel>{{ t("title.labels.login") }}</IonLabel>
       <IonButton size="default" @click="authorize">
         <IonLabel slot="start">{{ t("title.buttons.open") }}</IonLabel>
         <IonIcon :icon="openOutline" size="default" slot="end"></IonIcon>
