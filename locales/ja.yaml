@@ -4,6 +4,16 @@ job_result:
 results:
   nightless: 昼
   night: 夜
+salmonIds:
+  0: キンシャケ
+  1: バクダン
+  2: カタパッド
+  3: テッパン
+  4: ヘビ
+  5: タワー
+  6: モグラ
+  7: グリル
+  8: コウモリ
 wave_result:
   event_type:
     "0": "-"

@@ -29,6 +29,17 @@ import "./theme/variables.css";
 import "./assets/sass/style.scss";
 import "./theme/style.scss";
 
+import ECharts from "vue-echarts";
+import { use } from "echarts/core";
+import { CanvasRenderer } from "echarts/renderers";
+import { PieChart, RadarChart, BarChart } from "echarts/charts";
+import {
+  TitleComponent,
+  TooltipComponent,
+  LegendComponent,
+  GridComponent,
+} from "echarts/components";
+
 /* I18n */
 import { createI18n } from "vue-i18n";
 import ja from "/locales/ja.yaml";
@@ -51,6 +62,17 @@ const i18n = createI18n({
   availableLocales: ["en", "ja"],
 });
 
+use([
+  CanvasRenderer,
+  BarChart,
+  PieChart,
+  RadarChart,
+  GridComponent,
+  TooltipComponent,
+  LegendComponent,
+  TitleComponent,
+]);
+
 const app = createApp(App)
   .use(IonicVue, {
     animated: true,
@@ -59,7 +81,9 @@ const app = createApp(App)
     swipeBackEnabled: false,
   })
   .use(router)
-  .use(i18n);
+  .use(i18n)
+  .component("v-chart", ECharts);
+
 router.isReady().then(() => {
   app.mount("#app");
 });
