@@ -126,7 +126,7 @@ export interface PlayerResult {
 
 export interface TotalResult {
   night: TotalEggResult;
-  nightless: TotalEggResult;
+  nightLess: TotalEggResult;
 }
 
 export interface TotalEggResult {

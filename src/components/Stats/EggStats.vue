@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { WaveResult } from '@/types/salmonstats';
+import { TotalResult, WaveResult } from '@/types/salmonstats';
 import { IonItem, IonLabel, IonItemGroup, IonToggle, IonListHeader, IonIcon, IonList } from '@ionic/vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n()
 const props = defineProps<{
+  totals: TotalResult
   results: WaveResult[][]
 }>()
 
@@ -19,6 +20,30 @@ const results = props.results.reverse()
 
 <template>
   <IonList>
+    <IonListHeader mode="ios">
+      <IonLabel>{{ t("results.total") }}</IonLabel>
+    </IonListHeader>
+    <template v-for="total in [totals.night, totals.nightLess]">
+      <IonItem button>
+        <div class="coop-wave-result">
+          <section>
+            <IonLabel>{{ t(`results.${!total.nightless ? 'night' : 'nightless'}`) }}</IonLabel>
+            <IonLabel class="prob">
+              {{ (total.count / (totals.night.count + totals.nightLess.count) * 100).toFixed(3) }}
+            </IonLabel>
+          </section>
+          <section class="coop-wave-appearances">
+            <IonLabel class="golden-ikura num">
+              {{ total.golden_ikura_num }}
+            </IonLabel>
+            <IonLabel class="ikura num">
+              {{ total.ikura_num }}
+            </IonLabel>
+          </section>
+        </div>
+      </IonItem>
+
+    </template>
     <template v-for="(waves, index) in results">
       <IonListHeader mode="ios">
         <IonLabel>

@@ -5,6 +5,7 @@ job_result:
   wipe_out: ゼンメツ
   time_limit: 時間切れ
 results:
+  total: 総合
   nightless: 昼
   night: 夜
 salmonIds:

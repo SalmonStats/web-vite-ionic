@@ -79,10 +79,8 @@ async function onLoad() {
     return
   }
   try {
-    console.log(nsaid)
     const url: string = `${import.meta.env.VITE_APP_URL}/players/${nsaid}`
     player.value = await (await fetch(url)).json() as Player
-    console.log(player.value)
   } catch (error) {
     console.log(error)
   }

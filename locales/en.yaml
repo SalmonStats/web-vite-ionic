@@ -18,6 +18,7 @@ salmonIds:
     appearances: Appearances
     defeated: Defeated
 results:
+  total: Total
   nightless: Nightless
   night: Night
 wave_result:
