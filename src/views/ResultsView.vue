@@ -27,53 +27,46 @@ import { Paginated, Parameters } from '@/types/common';
 import { OrderType, SortType } from '@/types/enum';
 import ModalButton from '../components/ModalButton.vue';
 
+interface Props {
+  nsaid?: string;
+  limit: number;
+  sort: SortType;
+  order: OrderType;
+  nightless?: boolean;
+  golden_ikura_num: number;
+  ikura_num: number;
+  is_clear: boolean;
+}
 const { t } = useI18n()
 const results: Ref<Result[]> = ref<Result[]>([])
 
-const props = defineProps<{
-  nsaid?: string
-}>()
-
-const parameters: Ref<Parameters> = ref<Parameters>({
-  // 受け取ったデータで初期化する
-  limit: 15,
+const props = withDefaults(defineProps<Props>(), {
+  nsaid: undefined,
+  limit: isPlatform('desktop') ? 20 : 10,
   sort: SortType.CREATED,
   order: OrderType.DESC,
-  nightless: false,
-  golden_ikura_num: 100,
-  ikura_num: 1000,
-  is_clear: true
+  nightless: undefined,
+  golden_ikura_num: 0,
+  ikura_num: 0
 })
 
+const parameters: Ref<Parameters> = ref<Parameters>(props)
+
 async function onLoad(offset: number = 0) {
-  if (offset === 0) {
-    results.value = []
-  }
-  // タブレットやPCの場合は50件取得、その他は15件取得
-  const sortType: SortType = parameters.value.sort
-  const limit: number = (isPlatform('desktop') || isPlatform('phablet')) ? 50 : parameters.value.limit
-  const orderType: OrderType = parameters.value.order
-  const nightless: boolean = parameters.value.nightless
-  const golden_ikura_num: number = parameters.value.golden_ikura_num
-  const ikura_num: number = parameters.value.ikura_num
-  console.log(`Loading Results: Offset: ${offset} Limit: ${limit}`)
   const params: URLSearchParams = new URLSearchParams({
-    limit: limit.toString(),
-    offset: offset.toString(),
-    sort: sortType.toString(),
-    order: orderType.toString(),
-    ikura_num: ikura_num.toString(),
-    golden_ikura_num: golden_ikura_num.toString(),
+    limit: props.limit.toString(),
+    offset: results.value.length.toString(),
+    sort: props.sort.toString(),
+    order: props.order.toString(),
+    ikura_num: props.ikura_num.toString(),
+    golden_ikura_num: props.golden_ikura_num.toString(),
   })
-  if (nightless) {
-    params.append('night_less', 'true')
-  }
   console.log(params.toString())
-  const url: string = `${import.meta.env.VITE_APP_URL}/results?${params.toString()}`
-  const response: Paginated<Result> = (await axios.get(url)).data
-  response.results.forEach((result: Result) => {
-    results.value.push(result)
-  })
+  // const url: string = `${import.meta.env.VITE_APP_URL}/results?${params.toString()}`
+  // const response: Paginated<Result> = (await axios.get(url)).data
+  // response.results.forEach((result: Result) => {
+  //   results.value.push(result)
+  // })
 }
 
 async function onRefresh(event: CustomEvent) {

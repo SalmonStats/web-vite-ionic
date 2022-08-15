@@ -31,10 +31,11 @@ export type CoopSummary = {
 };
 
 export interface Parameters {
+  nsaid?: string;
   limit: number;
   sort: SortType;
   order: OrderType;
-  nightless: boolean;
+  nightless?: boolean;
   golden_ikura_num: number;
   ikura_num: number;
   is_clear: boolean;

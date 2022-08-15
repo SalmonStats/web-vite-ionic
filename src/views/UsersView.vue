@@ -110,7 +110,7 @@ onIonViewDidEnter(() => {
           </template>
         </IonSegment>
       </IonToolbar>
-      <ResultsView />
+      <!-- <ResultsView /> -->
     </IonContent>
   </IonPage>
 </template>
