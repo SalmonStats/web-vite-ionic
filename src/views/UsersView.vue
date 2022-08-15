@@ -8,8 +8,12 @@ import {
   IonList,
   IonItem,
   onIonViewDidEnter,
+  IonSegment,
+  IonSegmentButton,
+  IonIcon
 } from '@ionic/vue';
 import { useI18n } from 'vue-i18n';
+import { informationCircleOutline, calendarOutline, layersOutline, pieChartOutline } from 'ionicons/icons';
 import CoopHeader from '@/components/CoopHeader.vue';
 import CoopButton from '@/components/CoopButton.vue';
 import { SplatNet2 } from '@/types/common';
@@ -19,12 +23,44 @@ import CoopUser from '@/components/CoopUser.vue';
 import CoopRecord from '@/components/CoopRecord.vue';
 import { useRoute } from 'vue-router';
 import NowLoading from '@/components/NowLoading.vue';
+import ResultsView from './ResultsView.vue';
 
+enum SegmentType {
+  INFO = 'info',
+  GRADE = 'grade',
+  CHART = 'chart',
+  EGG = 'egg'
+}
+
+type Segment = {
+  value: SegmentType,
+  icon: string,
+  label?: string
+}
 const router = useRoute()
-
 const { t } = useI18n()
 const player: Ref<Player | undefined> = ref<Player>()
 const account: Ref<SplatNet2 | undefined> = ref<SplatNet2>()
+const selected: Ref<SegmentType> = ref<SegmentType>(SegmentType.INFO)
+
+const segments: Segment[] = [
+  {
+    value: SegmentType.INFO,
+    icon: informationCircleOutline,
+  },
+  {
+    value: SegmentType.CHART,
+    icon: layersOutline
+  },
+  {
+    value: SegmentType.GRADE,
+    icon: calendarOutline
+  },
+  {
+    value: SegmentType.EGG,
+    icon: pieChartOutline
+  },
+]
 
 function onLoad() {
   // パスパラメータがなければストレージからアカウント情報を読み込む
@@ -65,16 +101,16 @@ onIonViewDidEnter(() => {
   <IonPage>
     <CoopHeader :title="t('title.headers.account')" />
     <IonContent>
-      <template v-if="player !== undefined">
-        <CoopUser :player="player" />
-        <CoopRecord :results="player.stage_results" />
-      </template>
-      <template v-if="account !== undefined">
-        <CoopButton :account="account" />
-      </template>
-      <template v-if="player === undefined">
-        <NowLoading />
-      </template>
+      <IonToolbar>
+        <IonSegment :value="selected" @ionChange="(value: CustomEvent) => selected = value.detail.value">
+          <template v-for="segment in segments">
+            <IonSegmentButton :value="segment.value">
+              <IonIcon :src="segment.icon"></IonIcon>
+            </IonSegmentButton>
+          </template>
+        </IonSegment>
+      </IonToolbar>
+      <ResultsView />
     </IonContent>
   </IonPage>
 </template>

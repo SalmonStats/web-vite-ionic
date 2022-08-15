@@ -30,6 +30,10 @@ import ModalButton from '../components/ModalButton.vue';
 const { t } = useI18n()
 const results: Ref<Result[]> = ref<Result[]>([])
 
+const props = defineProps<{
+  nsaid?: string
+}>()
+
 const parameters: Ref<Parameters> = ref<Parameters>({
   // 受け取ったデータで初期化する
   limit: 15,

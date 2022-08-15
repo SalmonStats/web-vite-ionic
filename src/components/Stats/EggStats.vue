@@ -13,11 +13,13 @@ Array.prototype.sum = function () {
   if (!Array.isArray(items)) return 0;
   return items.reduce((sum, num) => sum + num, 0);
 };
+
+const results = props.results.reverse()
 </script>
 
 <template>
   <IonList>
-    <template v-for="(waves, index) in results.reverse()">
+    <template v-for="(waves, index) in results">
       <IonListHeader mode="ios">
         <IonLabel>
           {{ t(`wave_result.water_level.${2 - index}`) }}

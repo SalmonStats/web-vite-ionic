@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ChartData, ChartOptions, ChartProps as Props } from '@/types/charts';
+import { ChartOptions } from '@/types/charts';
 
-interface ChartProps extends Props {
+interface ChartProps {
   options: Partial<ChartOptions>;
-  series: ChartData[]
+  series: number[]
 }
+
 
 const options = {
   chart: {

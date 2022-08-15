@@ -23,7 +23,7 @@ Array.prototype.sum = function () {
       </IonLabel>
     </IonListHeader>
     <template v-for="result in results">
-      <IonItem button :class="`coop-rank-${result.rank}`">
+      <IonItem button :router-link="`/users/${result.nsaid}`" :class="`coop-rank-${result.rank}`">
         <div class=" coop-grade-result">
           <section class="coop-grade-result-player">
             <IonLabel style="width: 24px; text-align: center;">{{ result.rank }}</IonLabel>

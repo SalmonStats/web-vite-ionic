@@ -64,10 +64,6 @@ const segments: Segment[] = [
   }
 ]
 
-function segmentChanged(ev: CustomEvent) {
-  console.log(ev.detail.value)
-}
-
 onMounted(async () => {
   await onLoad()
 })

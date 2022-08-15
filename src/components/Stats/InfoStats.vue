@@ -65,7 +65,7 @@ Array.prototype.sum = function () {
     <IonItem>
       <div>
         <section class="coop-result-img">
-          <IonImg :src="bossURL(index)" style="width: 40px;"></IonImg>
+          <IonImg :src="bossURL(index)" style="width: 40px; height: 40px; aspect-ratio: 1;"></IonImg>
         </section>
         <section class="coop-result-key">
           <IonLabel>{{ t(`salmonIds.${index}`) }}</IonLabel>
@@ -110,7 +110,6 @@ section {
   &.coop-result-values {
     width: 60px;
   }
-
 
   text-align: right;
 }
