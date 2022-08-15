@@ -15,6 +15,7 @@ import { ShiftStats } from '@/types/salmonstats';
 import EggStats from '@/components/Stats/EggStats.vue';
 import { useRoute } from 'vue-router';
 import GradeStats from '@/components/Stats/GradeStats.vue';
+import InfoStats from '../components/Stats/InfoStats.vue';
 
 const { t } = useI18n()
 
@@ -28,6 +29,44 @@ async function onLoad() {
   results.value = response
 }
 
+enum SegmentType {
+  INFO = 'info',
+  GRADE = 'grade',
+  CHART = 'chart',
+  EGG = 'egg'
+}
+
+const selected: Ref<SegmentType> = ref<SegmentType>(SegmentType.INFO)
+
+type Segment = {
+  value: SegmentType,
+  icon: string,
+  label?: string
+}
+
+const segments: Segment[] = [
+  {
+    value: SegmentType.INFO,
+    icon: informationCircleOutline,
+  },
+  {
+    value: SegmentType.GRADE,
+    icon: ribbonOutline,
+  },
+  {
+    value: SegmentType.CHART,
+    icon: statsChartOutline,
+  },
+  {
+    value: SegmentType.EGG,
+    icon: eggOutline,
+  }
+]
+
+function segmentChanged(ev: CustomEvent) {
+  console.log(ev.detail.value)
+}
+
 onMounted(async () => {
   await onLoad()
 })
@@ -38,24 +77,18 @@ onMounted(async () => {
     <CoopHeader :title="t('title.headers.schedules')" />
     <IonContent>
       <IonToolbar>
-        <IonSegment>
-          <IonSegmentButton>
-            <IonIcon :src="informationCircleOutline"></IonIcon>
-          </IonSegmentButton>
-          <IonSegmentButton>
-            <IonIcon :src="ribbonOutline"></IonIcon>
-          </IonSegmentButton>
-          <IonSegmentButton>
-            <IonIcon :src="statsChartOutline"></IonIcon>
-          </IonSegmentButton>
-          <IonSegmentButton>
-            <IonIcon :src="eggOutline"></IonIcon>
-          </IonSegmentButton>
+        <IonSegment :value="selected" @ionChange="(value: CustomEvent) => selected = value.detail.value">
+          <template v-for="segment in segments">
+            <IonSegmentButton :value="segment.value">
+              <IonIcon :src="segment.icon"></IonIcon>
+            </IonSegmentButton>
+          </template>
         </IonSegment>
       </IonToolbar>
       <template v-if="results !== undefined">
-        <!-- <EggStats :results=results.wave_results /> -->
-        <GradeStats :results=results.grade_results />
+        <InfoStats :result=results.job_results :bosses="results.boss_results" v-if="selected === SegmentType.INFO" />
+        <GradeStats :results=results.grade_results v-if="selected === SegmentType.GRADE" />
+        <EggStats :results=results.wave_results v-if="selected === SegmentType.EGG" />
       </template>
     </IonContent>
   </IonPage>

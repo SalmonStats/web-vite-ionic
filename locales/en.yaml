@@ -1,22 +1,38 @@
 job_result:
+  job: Jobs
   true: Clear
   false: Failure
+  wipe_out: Wipe out
+  time_limit: Time limit
+salmonIds:
+  0: Goldie
+  1: Steelhead
+  2: Flyfish
+  3: Scrapper
+  4: Steel Eel
+  5: Stinger
+  6: Maw
+  7: Griller
+  8: Drizzler
+  results:
+    appearances: Appearances
+    defeated: Defeated
 results:
   nightless: Nightless
   night: Night
 wave_result:
   water_level:
-    "0": LT
-    "1": NT
-    "2": HT
+    0: LT
+    1: NT
+    2: HT
   event_type:
-    "0": "-"
-    "1": Rush
-    "2": Goldie Seeking
-    "3": Griller
-    "4": The Mothership
-    "5": Fog
-    "6": Cohock Charge
+    0: "-"
+    1: Rush
+    2: Goldie Seeking
+    3: Griller
+    4: The Mothership
+    5: Fog
+    6: Cohock Charge
 schedule:
   stage:
     5003: Salmonid Smokeyard
@@ -61,3 +77,6 @@ select:
     golden_ikura_num: 金イクラ納品数
     ikura_num: イクラ獲得数
     play_time: プレイ時間
+ranks:
+  grade: Grade
+  weapons: Weapons

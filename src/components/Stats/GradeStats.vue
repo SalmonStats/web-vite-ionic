@@ -19,7 +19,7 @@ Array.prototype.sum = function () {
   <IonList>
     <IonListHeader mode="ios">
       <IonLabel>
-        {{ t(`grade_result`) }}
+        {{ t(`ranks.grade`) }}
       </IonLabel>
     </IonListHeader>
     <template v-for="result in results">
@@ -52,29 +52,29 @@ Array.prototype.sum = function () {
 
 ion-item {
   &.coop-rank-1 {
-    --background: gold !important;
-    --border-color: transparent !important;
+    --background: rgb(240, 230, 140) !important;
+    --border-color: black !important;
     --border-width: 0px;
     --padding-top: 4px;
-    --padding-bottom: 4px;
+    // --padding-bottom: 4px;
     color: black
   }
 
   &.coop-rank-2 {
-    --background: silver !important;
-    --border-color: transparent !important;
+    --background: rgb(212, 212, 212) !important;
+    --border-color: black !important;
     --border-width: 0px;
     --padding-top: 4px;
-    --padding-bottom: 4px;
+    // --padding-bottom: 4px;
     color: black
   }
 
   &.coop-rank-3 {
-    --background: #cd7f32 !important;
-    --border-color: transparent !important;
+    --background: rgb(245, 167, 90) !important;
+    --border-color: black !important;
     --border-width: 0px;
     --padding-top: 4px;
-    --padding-bottom: 4px;
+    // --padding-bottom: 4px;
     color: black
   }
 }

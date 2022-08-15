@@ -1,23 +1,38 @@
 job_result:
+  job: バイト
   true: Clear!
   false: Defeat!
+  wipe_out: ゼンメツ
+  time_limit: 時間切れ
 results:
   nightless: 昼
   night: 夜
+salmonIds:
+  0: キンシャケ
+  1: バクダン
+  2: カタパッド
+  3: テッパン
+  4: ヘビ
+  5: タワー
+  6: モグラ
+  7: グリル
+  8: コウモリ
+  results:
+    appearances: 出現数
+    defeated: 討伐数
 wave_result:
   event_type:
-    "0": "-"
-    "1": ラッシュ
-    "2": キンシャケ探し
-    "3": グリル発進
-    "4": ハコビヤ襲来
-    "5": 霧
-    "6": ドスコイ大量発生
-    fog: 霧
+    0: "-"
+    1: ラッシュ
+    2: キンシャケ探し
+    3: グリル発進
+    4: ハコビヤ襲来
+    5: 霧
+    6: ドスコイ大量発生
   water_level:
-    "0": 干潮
-    "1": 通常
-    "2": 満潮
+    0: 干潮
+    1: 通常
+    2: 満潮
 schedule:
   stage:
     5000: シェケナダム
@@ -58,3 +73,6 @@ select:
     golden_ikura_num: 金イクラ納品数
     ikura_num: イクラ獲得数
     play_time: プレイ時間
+ranks:
+  grade: 評価
+  weapons: ブキ
