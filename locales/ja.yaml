@@ -62,6 +62,7 @@ title:
     appearances: 外観
     languages: 言語
     shifts_worked: バイト回数
+    login_required: 任天堂アカウントでのログインが必要です
   headers:
     account: アカウント
     login: ログイン

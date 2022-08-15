@@ -26,6 +26,7 @@ import CoopResultOverview from '@/components/CoopResultOverview.vue';
 import { Paginated, Parameters } from '@/types/common';
 import { OrderType, SortType } from '@/types/enum';
 import ModalButton from '../components/ModalButton.vue';
+import NowLoading from '@/components/NowLoading.vue';
 
 interface Props {
   nsaid?: string;
@@ -119,11 +120,16 @@ onMounted(async () => {
       <IonRefresher @ion-refresh="onRefresh($event)" slot="fixed">
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
-      <IonList>
-        <template v-for="result in results" :key="result.salmon_id">
-          <CoopResultOverview :result="result" />
-        </template>
-      </IonList>
+      <template v-if="results.length !== 0">
+        <IonList>
+          <template v-for="result in results" :key="result.salmon_id">
+            <CoopResultOverview :result="result" />
+          </template>
+        </IonList>
+      </template>
+      <template v-if="results.length === 0">
+        <NowLoading />
+      </template>
       <IonInfiniteScroll @ion-infinite="getResults">
         <IonInfiniteScrollContent></IonInfiniteScrollContent>
       </IonInfiniteScroll>

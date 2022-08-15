@@ -62,6 +62,7 @@ title:
     appearances: Appearances
     languages: Languages
     shifts_worked: Shifts worked
+    login_required: Nintendo account login is required.
   headers:
     account: Account
     login: Sign In

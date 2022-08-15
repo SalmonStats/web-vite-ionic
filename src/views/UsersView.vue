@@ -24,6 +24,7 @@ import CoopRecord from '@/components/CoopRecord.vue';
 import { useRoute } from 'vue-router';
 import NowLoading from '@/components/NowLoading.vue';
 import ResultsView from './ResultsView.vue';
+import SignInAlert from '@/components/SignInAlert.vue';
 
 enum SegmentType {
   INFO = 'info',
@@ -74,13 +75,21 @@ const segments: Segment[] = [
 ]
 
 async function onLoad() {
-  const url: string = `${import.meta.env.VITE_APP_URL}/players/${nsaid}`
-  player.value = await (await fetch(url)).json() as Player
+  if (nsaid === undefined) {
+    return
+  }
+  try {
+    console.log(nsaid)
+    const url: string = `${import.meta.env.VITE_APP_URL}/players/${nsaid}`
+    player.value = await (await fetch(url)).json() as Player
+    console.log(player.value)
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 // 表示される度に実行される
 onIonViewDidEnter(async () => {
-  console.log("View Did Enter")
   await onLoad()
 })
 </script>
@@ -98,7 +107,15 @@ onIonViewDidEnter(async () => {
           </template>
         </IonSegment>
       </IonToolbar>
-      <ResultsView :nsaid="nsaid" v-if="selected === SegmentType.RESULTS" />
+      <template v-if="player !== undefined">
+        <ResultsView :nsaid="nsaid" v-if="selected === SegmentType.RESULTS" />
+      </template>
+      <template v-if="player === undefined && account.nsaid === undefined">
+        <SignInAlert />
+      </template>
+      <template v-if="player === undefined && account.nsaid !== undefined">
+        <NowLoading />
+      </template>
     </IonContent>
   </IonPage>
 </template>
