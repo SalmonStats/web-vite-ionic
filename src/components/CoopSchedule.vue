@@ -16,8 +16,8 @@ const props = defineProps<{
 </script>
 
 <template>
-  <IonItem>
-    <div class="coop-schedule">
+  <IonItem button :router-link="`/schedules/${dayjs(props.schedule.start_time).unix()}`">
+    <div class=" coop-schedule">
       <section class="coop-schedule-summary">
         <IonLabel>
           {{ dayjs(schedule.start_time).format('MM/DD HH:mm') }}

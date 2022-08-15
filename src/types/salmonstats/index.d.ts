@@ -81,3 +81,65 @@ export type TotalRank = {
   /** プレイヤー名リスト */
   names: string[];
 };
+
+export interface ShiftStats {
+  boss_results: BossResult[];
+  grade_results: GradeResult[];
+  job_results: JobResult;
+  total_results: TotalResult;
+  wave_results: WaveResult[][];
+  weapon_results: WeaponResult[];
+}
+
+export interface BossResult {
+  boss_counts: number;
+  boss_kill_counts: number;
+}
+
+export interface WaveResult {
+  golden_ikura_num: number;
+  ikura_num: number;
+  water_level: number;
+  event_type: number;
+  count: number;
+}
+
+export interface JobResult {
+  failure_waves: FailureWave[];
+  is_clear: number;
+  is_failure: number;
+}
+
+export interface FailureWave {
+  failure_wave: number;
+  time_limit: number;
+  wipe_out: number;
+}
+
+export interface PlayerResult {
+  rank: number;
+  nsaid: string;
+  name: string;
+  thumbnail_url: string;
+  shifts_worked: number;
+}
+
+export interface TotalResult {
+  night: TotalEggResult;
+  nightless: TotalEggResult;
+}
+
+export interface TotalEggResult {
+  golden_ikura_num: number;
+  ikura_num: number;
+  nightless: boolean;
+  count: number;
+}
+
+export interface GradeResult extends PlayerResult {
+  grade_point_max: number;
+}
+
+export interface WeaponResult extends PlayerResult {
+  supplied_weapon_counts: number;
+}

@@ -25,6 +25,20 @@ ion-label.num::before {
   content: "x";
 }
 
+ion-label.nsaid {
+  font-size: 14px !important;
+  color: var(--ion-color-text-secondary) !important;
+}
+
+ion-label.prob {
+  font-size: 14px !important;
+  color: var(--ion-color-text-secondary) !important;
+}
+
+ion-label.prob::after {
+  content: "%";
+}
+
 ion-label.golden-ikura {
   color: var(--ion-color-result-golden-ikura) !important;
   font-weight: 600;

@@ -35,6 +35,8 @@ import ja from "/locales/ja.yaml";
 import en from "/locales/en.yaml";
 import { getDeviceThemeParams } from "@/types/common/appearances";
 
+import VueApexCharts from "vue3-apexcharts";
+
 /* ローカルデータを取得 */
 const { theme, lang } = getDeviceThemeParams();
 
@@ -59,7 +61,9 @@ const app = createApp(App)
     swipeBackEnabled: false,
   })
   .use(router)
-  .use(i18n);
+  .use(i18n)
+  .component("ApexCharts", VueApexCharts);
+// .use(VueApexCharts);
 router.isReady().then(() => {
   app.mount("#app");
 });
