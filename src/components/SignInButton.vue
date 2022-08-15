@@ -19,9 +19,6 @@ async function present() {
 <template>
   <IonButton @click="present">
     <IonIcon :icon="personCircleOutline" size="large"></IonIcon>
-    <!-- <IonModal>
-      <SignInView />
-    </IonModal> -->
   </IonButton>
 </template>
 

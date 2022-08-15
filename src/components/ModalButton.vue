@@ -15,16 +15,27 @@ const emit = defineEmits<Emits>()
 const props = defineProps<{
   parameters: Parameters
 }>()
+
+async function present() {
+  const modal = await modalController.create({
+    component: ParamView,
+    swipeToClose: false,
+    componentProps: {
+      parameters: props.parameters,
+    },
+  });
+  modal.present()
+
+  const { data, role } = await modal.onWillDismiss();
+  emit('parameters', data as Parameters);
+}
 </script>
 
 <template>
   <IonFab vertical="bottom" horizontal="end" slot="fixed">
-    <IonFabButton id="open-modal">
+    <IonFabButton @click="present">
       <IonIcon :icon="filterOutline" size="large"></IonIcon>
     </IonFabButton>
-    <IonModal trigger="open-modal">
-      <ParamView :parameters="parameters" @parameters="(value) => emit('parameters', value)" />
-    </IonModal>
   </IonFab>
 </template>
 

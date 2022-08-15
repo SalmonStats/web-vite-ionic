@@ -47,10 +47,9 @@ const parameters: Ref<Parameters> = ref<Parameters>({
 
 // モーダルを閉じるときに変更内容を送信
 async function dismiss() {
-  emit('parameters', parameters.value)
-  modalController.dismiss(null, 'cancel')
+  console.log("Emit!")
+  modalController.dismiss(parameters.value, 'cancel')
 }
-
 </script>
 
 <template>

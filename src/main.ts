@@ -63,7 +63,6 @@ const app = createApp(App)
   .use(router)
   .use(i18n)
   .component("ApexCharts", VueApexCharts);
-// .use(VueApexCharts);
 router.isReady().then(() => {
   app.mount("#app");
 });

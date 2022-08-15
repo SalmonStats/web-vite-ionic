@@ -19,11 +19,6 @@ import SignInView from './SignInView.vue';
           <IonLabel>Schedules</IonLabel>
         </IonTabButton>
 
-        <IonTabButton tab="charts" href="/charts">
-          <IonIcon :icon="pieChartOutline" />
-          <IonLabel>Charts</IonLabel>
-        </IonTabButton>
-
         <IonTabButton tab="search" href="/search">
           <IonIcon :icon="searchOutline" />
           <IonLabel>Search</IonLabel>

@@ -27,9 +27,9 @@ import ResultsView from './ResultsView.vue';
 
 enum SegmentType {
   INFO = 'info',
-  GRADE = 'grade',
-  CHART = 'chart',
-  EGG = 'egg'
+  RESULTS = 'results',
+  SCHEDULES = 'schedules',
+  CHARTS = 'charts'
 }
 
 type Segment = {
@@ -39,8 +39,19 @@ type Segment = {
 }
 const router = useRoute()
 const { t } = useI18n()
+
+const account: Ref<SplatNet2> = ref<SplatNet2>((() => {
+  return JSON.parse(localStorage.getItem('account') ?? "{}") as SplatNet2
+})())
+
+const nsaid: string = (() => {
+  // パラメータからIDを取得する
+  // なければログイン情報から取得する
+  return router.params.nsaid as string ?? account.value.nsaid
+})()
+
 const player: Ref<Player | undefined> = ref<Player>()
-const account: Ref<SplatNet2 | undefined> = ref<SplatNet2>()
+
 const selected: Ref<SegmentType> = ref<SegmentType>(SegmentType.INFO)
 
 const segments: Segment[] = [
@@ -49,57 +60,34 @@ const segments: Segment[] = [
     icon: informationCircleOutline,
   },
   {
-    value: SegmentType.CHART,
+    value: SegmentType.RESULTS,
     icon: layersOutline
   },
   {
-    value: SegmentType.GRADE,
+    value: SegmentType.SCHEDULES,
     icon: calendarOutline
   },
   {
-    value: SegmentType.EGG,
+    value: SegmentType.CHARTS,
     icon: pieChartOutline
   },
 ]
 
-function onLoad() {
-  // パスパラメータがなければストレージからアカウント情報を読み込む
-  if (router.params.nsaid === undefined) {
-    const data: string | null = localStorage.getItem('account')
-    if (data !== null) {
-      account.value = JSON.parse(data) as SplatNet2
-    }
-  }
-
-  // 取得するユーザーを指定する
-  const nsaid: string | undefined = (router.params.nsaid as string) ?? account.value?.nsaid
-
-  // 取得するユーザーがなければ何もしない
-  if (nsaid === undefined) {
-    return
-  }
-
-  const url = `${import.meta.env.VITE_APP_URL}/players/${nsaid}`
-  fetch(url)
-    .then((res) => res.json())
-    .then((res: Player) => {
-      player.value = res
-      console.log(res)
-    })
+async function onLoad() {
+  const url: string = `${import.meta.env.VITE_APP_URL}/players/${nsaid}`
+  player.value = await (await fetch(url)).json() as Player
 }
 
-onMounted(() => {
-  onLoad()
-})
-
-onIonViewDidEnter(() => {
-  onLoad()
+// 表示される度に実行される
+onIonViewDidEnter(async () => {
+  console.log("View Did Enter")
+  await onLoad()
 })
 </script>
 
 <template>
   <IonPage>
-    <CoopHeader :title="t('title.headers.account')" />
+    <CoopHeader :title="player?.nickname ?? t('title.headers.loading')" />
     <IonContent>
       <IonToolbar>
         <IonSegment :value="selected" @ionChange="(value: CustomEvent) => selected = value.detail.value">
@@ -110,7 +98,7 @@ onIonViewDidEnter(() => {
           </template>
         </IonSegment>
       </IonToolbar>
-      <!-- <ResultsView /> -->
+      <ResultsView :nsaid="nsaid" v-if="selected === SegmentType.RESULTS" />
     </IonContent>
   </IonPage>
 </template>
