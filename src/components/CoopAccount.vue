@@ -72,7 +72,7 @@ onMounted(() => {
 <template>
   <IonItemGroup>
     <IonListHeader lines="none" mode="ios">
-      <IonLabel>Nintendo</IonLabel>
+      <IonLabel>{{ t("title.labels.nintendo") }}</IonLabel>
     </IonListHeader>
     <IonItem>
       <IonLabel>{{ t("title.labels.login") }}</IonLabel>

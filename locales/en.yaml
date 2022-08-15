@@ -55,11 +55,13 @@ messages:
     "Unauthorized.": "Unauthorized credentials for the requested resource."
 title:
   labels:
+    nintendo: Nintendo
     login: Sign In
     results: Results
     theme: Theme
     appearances: Appearances
     languages: Languages
+    shifts_worked: Shifts worked
   headers:
     account: Account
     login: Sign In
@@ -68,6 +70,8 @@ title:
     schedules: Schedules
     search: Search
     users: Users
+    loading: Now loading...
+    salmon_ids: Boss SalmonIds
   buttons:
     open: Open
     authorize: Authorize

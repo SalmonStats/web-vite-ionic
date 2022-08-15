@@ -35,7 +35,7 @@ function changedLang() {
 <template>
   <IonItemGroup>
     <IonListHeader lines="none" mode="ios">
-      <IonLabel>Appearances</IonLabel>
+      <IonLabel>{{ t("title.labels.appearances") }}</IonLabel>
     </IonListHeader>
     <IonItem>
       <IonLabel slot="start">{{ t("title.labels.theme") }}</IonLabel>

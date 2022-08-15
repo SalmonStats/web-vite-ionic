@@ -55,7 +55,13 @@ messages:
     "Unauthorized.": "認証されていません"
 title:
   labels:
+    nintendo: 任天堂
     login: ログイン
+    results: リザルト
+    theme: テーマ
+    appearances: 外観
+    languages: 言語
+    shifts_worked: バイト回数
   headers:
     account: アカウント
     login: ログイン
@@ -64,6 +70,8 @@ title:
     schedules: スケジュール
     search: 検索
     users: プレイヤー
+    loading: データ取得中です
+    salmon_ids: オオモノシャケ
   buttons:
     open: 開く
     authorize: 認証する

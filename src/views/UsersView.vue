@@ -18,6 +18,7 @@ import { onMounted, Ref, ref } from 'vue';
 import CoopUser from '@/components/CoopUser.vue';
 import CoopRecord from '@/components/CoopRecord.vue';
 import { useRoute } from 'vue-router';
+import NowLoading from '@/components/NowLoading.vue';
 
 const router = useRoute()
 
@@ -70,6 +71,9 @@ onIonViewDidEnter(() => {
       </template>
       <template v-if="account !== undefined">
         <CoopButton :account="account" />
+      </template>
+      <template v-if="player === undefined">
+        <NowLoading />
       </template>
     </IonContent>
   </IonPage>

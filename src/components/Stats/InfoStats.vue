@@ -3,6 +3,7 @@ import { BossResult, GradeResult, WaveResult } from '@/types/salmonstats';
 import { JobResult } from '@/types/salmonstats';
 import { IonItem, IonLabel, IonItemGroup, IonToggle, IonListHeader, IonIcon, IonList, IonAvatar, IonImg } from '@ionic/vue';
 import { useI18n } from 'vue-i18n';
+import { bossURL } from '@/functions';
 
 const { t } = useI18n()
 const props = defineProps<{
@@ -24,6 +25,19 @@ Array.prototype.sum = function () {
         {{ t("job_result.job") }}
       </IonLabel>
     </IonListHeader>
+    <IonItem>
+      <div>
+        <section class="coop-result-key">
+          <IonLabel>{{ t("title.labels.shifts_worked") }}</IonLabel>
+          <IonLabel class="prob">{{ (result.is_clear / (result.is_failure + result.is_clear) * 100).toFixed(3) }}
+          </IonLabel>
+        </section>
+        <section class="coop-result-values">
+          <IonLabel class="num">{{ result.is_clear + result.is_failure }}</IonLabel>
+          <!-- <IonLabel class="num">{{ wave.time_limit }}</IonLabel> -->
+        </section>
+      </div>
+    </IonItem>
     <template v-for="(wave, index) in result.failure_waves">
       <IonItem>
         <div>
@@ -44,12 +58,15 @@ Array.prototype.sum = function () {
   </IonList>
   <IonListHeader mode="ios">
     <IonLabel>
-      {{ t(`ranks.grade`) }}
+      {{ t(`title.headers.salmon_ids`) }}
     </IonLabel>
   </IonListHeader>
   <template v-for="(boss, index) in bosses">
     <IonItem>
       <div>
+        <section class="coop-result-img">
+          <IonImg :src="bossURL(index)" style="width: 40px;"></IonImg>
+        </section>
         <section class="coop-result-key">
           <IonLabel>{{ t(`salmonIds.${index}`) }}</IonLabel>
           <IonLabel class="prob">{{ (boss.boss_kill_counts / boss.boss_counts * 100).toFixed(3) }}</IonLabel>
@@ -76,13 +93,17 @@ div {
 }
 
 section {
+  &.coop-result-img {
+    width: 50px;
+  }
+
   &.coop-result-key {
     width: 120px;
     text-align: left;
   }
 
   &.coop-result-column {
-    width: calc(100% - 120px - 60px);
+    width: calc(100% - 120px - 60px - 50px);
     text-align: right;
   }
 
