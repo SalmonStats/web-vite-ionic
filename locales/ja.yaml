@@ -64,6 +64,7 @@ title:
     languages: 言語
     shifts_worked: バイト回数
     login_required: 任天堂アカウントでのログインが必要です
+    construction: この機能は現在開発中です
   headers:
     account: アカウント
     login: ログイン

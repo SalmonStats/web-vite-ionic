@@ -108,7 +108,9 @@ async function setParams(value: Parameters) {
 }
 
 onMounted(async () => {
-  await onLoad()
+  if (results.value.length === 0) {
+    await onLoad()
+  }
 })
 </script>
 

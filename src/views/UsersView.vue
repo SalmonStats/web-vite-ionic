@@ -25,6 +25,7 @@ import { useRoute } from 'vue-router';
 import NowLoading from '@/components/NowLoading.vue';
 import ResultsView from './ResultsView.vue';
 import SignInAlert from '@/components/SignInAlert.vue';
+import UnderConstruction from '@/components/UnderConstruction.vue';
 
 enum SegmentType {
   INFO = 'info',
@@ -107,6 +108,8 @@ onIonViewDidEnter(async () => {
       </IonToolbar>
       <template v-if="player !== undefined">
         <ResultsView :nsaid="nsaid" v-if="selected === SegmentType.RESULTS" />
+        <UnderConstruction v-if="selected === SegmentType.SCHEDULES" />
+        <UnderConstruction v-if="selected === SegmentType.CHARTS" />
       </template>
       <template v-if="player === undefined && account.nsaid === undefined">
         <SignInAlert />

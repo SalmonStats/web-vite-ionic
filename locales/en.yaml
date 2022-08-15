@@ -64,6 +64,7 @@ title:
     languages: Languages
     shifts_worked: Shifts worked
     login_required: Nintendo account login is required.
+    construction: This feature is under construction.
   headers:
     account: Account
     login: Sign In
