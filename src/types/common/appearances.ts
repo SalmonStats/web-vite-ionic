@@ -3,7 +3,7 @@ import { Appearances } from "@/types/common";
 export function getDeviceThemeParams(): Appearances {
   const defaultParam: Appearances = {
     lang: "ja",
-    theme: "light",
+    theme: "dark",
   };
   const local: string | null = localStorage.getItem("appearances");
   if (local === null) return defaultParam;

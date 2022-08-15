@@ -107,7 +107,8 @@ onIonViewDidEnter(async () => {
         </IonSegment>
       </IonToolbar>
       <template v-if="player !== undefined">
-        <ResultsView :nsaid="nsaid" v-if="selected === SegmentType.RESULTS" />
+        <CoopRecord :results="player.stage_results" v-if="selected === SegmentType.INFO" />
+        <ResultsView :nsaid="nsaid" v-show="selected === SegmentType.RESULTS" />
         <UnderConstruction v-if="selected === SegmentType.SCHEDULES" />
         <UnderConstruction v-if="selected === SegmentType.CHARTS" />
       </template>

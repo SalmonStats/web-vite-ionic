@@ -8,7 +8,7 @@ export default defineConfig(({ command, mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd(), "") };
   return {
     server: {
-      port: 8000
+      port: 8000,
     },
     build: {
       rollupOptions: {
@@ -26,7 +26,7 @@ export default defineConfig(({ command, mode }) => {
       Vue(),
       VitePWA({
         registerType: "autoUpdate",
-        includeAssets: ["favicon.png", "safari-pinned-tab.svg"],
+        includeAssets: ["assets/**/*.png"],
         manifest: {
           name: "Salmon Stats",
           short_name: "Salmon Stats",
