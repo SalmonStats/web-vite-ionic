@@ -37,8 +37,6 @@ Array.prototype.sum = function () {
 </template>
 
 <style lang="scss" scoped>
-@import "@/theme/style.scss";
-
 .coop-result-player-boss-defeated {
   display: block;
   width: 100%;

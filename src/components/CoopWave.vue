@@ -56,8 +56,6 @@ const specialUsages = (() => {
 </template>
 
 <style lang="scss" scoped>
-@import "@/theme/style.scss";
-
 .coop-wave-info {
   font-size: 15px;
 }

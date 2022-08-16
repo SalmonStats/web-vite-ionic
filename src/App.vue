@@ -16,5 +16,4 @@ onMounted(() => {
 </template>
 
 <style>
-@import "@/theme/style.scss";
 </style>

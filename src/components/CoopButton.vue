@@ -5,6 +5,7 @@ import { syncOutline } from 'ionicons/icons';
 import { SplatNet2 } from '@/types/common';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import { ref, Ref } from 'vue';
 
 const { t } = useI18n()
 
@@ -15,14 +16,9 @@ interface Emits {
   (e: 'updated', value: SplatNet2): void;
 }
 
+const inProgress: Ref<boolean> = ref<boolean>(false)
 const emit = defineEmits<Emits>()
 const props = defineProps<Props>()
-
-Array.prototype.sum = function () {
-  const items = this as number[];
-  if (!Array.isArray(items)) return 0;
-  return items.reduce((sum, num) => sum + num, 0);
-};
 
 // セッショントークンが切れていたときに実行する
 async function authorize(session_token: string): Promise<SplatNet2> {
@@ -38,7 +34,9 @@ async function authorize(session_token: string): Promise<SplatNet2> {
 }
 
 async function getResults() {
+  inProgress.value = true
   const session_token: string = props.account.session_token
+
   try {
     console.log("Credentials: Expiration", props.account.expires_in, dayjs.unix(props.account.expires_in).toISOString())
     console.log("Credentials: NsaId", props.account.nsaid)
@@ -56,21 +54,25 @@ async function getResults() {
       result_id: 1,
       nsaid: props.account.nsaid
     }
-    axios.post(url, parameters)
+
     const toast = await toastController
       .create({
         message: "リザルト取得中",
         duration: 2000
       })
-    return toast.present()
+    toast.present()
+    await axios.post(url, parameters)
   } catch (error) {
 
   }
+  inProgress.value = false
 }
 </script>
 
 <template>
-  <IonBackdrop :tappable="false" :visible="true" :stop-propagation="false"></IonBackdrop>
+  <template v-if="inProgress">
+    <IonBackdrop :tappable="false" :visible="true" :stop-propagation="false"></IonBackdrop>
+  </template>
   <IonFab vertical="bottom" horizontal="end">
     <IonFabButton :icon="syncOutline" @click="getResults">
       <IonIcon :icon="syncOutline" size="large"></IonIcon>

@@ -41,8 +41,6 @@ const props = defineProps<{
 </template>
 
 <style lang="scss" scoped>
-@import "@/theme/style.scss";
-
 .coop-schedule {
   display: flex;
   font-size: 14px;
