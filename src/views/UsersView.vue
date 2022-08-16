@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import {
   IonContent,
-  IonHeader,
   IonPage,
-  IonTitle,
   IonToolbar,
-  IonList,
-  IonItem,
   onIonViewDidEnter,
   IonSegment,
   IonSegmentButton,
-  IonIcon
+  IonIcon,
+  IonBackdrop
 } from '@ionic/vue';
 import { useI18n } from 'vue-i18n';
 import { informationCircleOutline, calendarOutline, layersOutline, pieChartOutline } from 'ionicons/icons';
@@ -95,6 +92,7 @@ onIonViewDidEnter(async () => {
 
 <template>
   <IonPage>
+    <CoopButton :account="account" @updated="(value) => account = value" />
     <CoopHeader :title="player?.nickname ?? t('title.headers.loading')" />
     <IonContent>
       <IonToolbar>

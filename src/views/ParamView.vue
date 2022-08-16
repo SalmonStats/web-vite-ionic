@@ -8,8 +8,6 @@ import {
   IonButtons,
   IonToolbar,
   IonIcon,
-  IonFab,
-  IonFabButton
 } from '@ionic/vue';
 import { useI18n } from 'vue-i18n';
 import { closeOutline } from 'ionicons/icons';
@@ -19,7 +17,6 @@ import LimitButton from '@/components/ParamButton/LimitButton.vue';
 import StageButton from '@/components/ParamButton/StageButton.vue';
 import { ref, Ref } from 'vue';
 import { Parameters } from '@/types/common';
-import { OrderType, SortType } from '@/types/enum';
 import GoldenIkura from '@/components/ParamButton/GoldenIkura.vue';
 import NightLess from '@/components/ParamButton/NightLess.vue';
 import Ikura from '@/components/ParamButton/Ikura.vue';
@@ -48,7 +45,7 @@ const parameters: Ref<Parameters> = ref<Parameters>({
 // モーダルを閉じるときに変更内容を送信
 async function dismiss() {
   console.log("Emit!")
-  modalController.dismiss(parameters.value, 'cancel')
+  modalController.dismiss(parameters.value, 'confirm')
 }
 </script>
 

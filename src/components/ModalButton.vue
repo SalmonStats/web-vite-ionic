@@ -10,24 +10,33 @@ interface Emits {
   (e: 'parameters', value: Parameters): void;
 }
 
+interface Props {
+  parameters: Parameters;
+}
+
 const { t } = useI18n()
 const emit = defineEmits<Emits>()
-const props = defineProps<{
-  parameters: Parameters
-}>()
+const props = defineProps<Props>()
 
 async function present() {
   const modal = await modalController.create({
     component: ParamView,
-    swipeToClose: false,
     componentProps: {
       parameters: props.parameters,
     },
+    keyboardClose: true,
+    showBackdrop: true,
+    animated: true,
+    swipeToClose: true,
+    presentingElement: undefined,
+    canDismiss: true,
   });
   modal.present()
 
   const { data, role } = await modal.onWillDismiss();
-  emit('parameters', data as Parameters);
+  if (role === 'confirm') {
+    emit('parameters', data as Parameters);
+  }
 }
 </script>
 

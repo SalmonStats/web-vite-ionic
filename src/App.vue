@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IonApp, IonRouterOutlet } from '@ionic/vue';
+import { IonApp, IonRouterOutlet, IonBackdrop } from '@ionic/vue';
 import { onMounted } from 'vue';
 import { getDeviceThemeParams } from './types/common/appearances';
 
