@@ -8,7 +8,7 @@ const { t } = useI18n()
 
 <template>
   <IonItem :disabled="true">
-    <IonLabel>ステージ</IonLabel>
+    <IonLabel>{{ t("parameters.count") }}</IonLabel>
     <IonSelect interface="action-sheet">
       <template v-for="stageId in [5000, 5001, 5002, 5003, 5004]" :key="stageId">
         <IonSelectOption>{{ t(`schedule.stage.${stageId}`) }}</IonSelectOption>

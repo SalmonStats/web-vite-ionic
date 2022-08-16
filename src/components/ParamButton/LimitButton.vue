@@ -20,7 +20,7 @@ function changedValue(event: CustomEvent) {
 
 <template>
   <IonItem>
-    <IonLabel>取得件数</IonLabel>
+    <IonLabel>{{ t("parameters.count") }}</IonLabel>
     <IonSelect interface="action-sheet" @ion-change="changedValue" :value="props.parameters.limit">
       <template v-for="limit in [15, 25, 50, 100]" :key="limit">
         <IonSelectOption :value="limit">{{ limit }}</IonSelectOption>

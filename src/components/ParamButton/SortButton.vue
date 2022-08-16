@@ -17,7 +17,7 @@ const props = defineProps<{
 
 <template>
   <IonItem>
-    <IonLabel>並び順</IonLabel>
+    <IonLabel>{{ t("parameters.sort") }}</IonLabel>
     <IonSelect interface="action-sheet" @ion-change="(value) => emit('sort_type', value.detail.value as string)"
       :value="props.parameters.sort">
       <template v-for="sortType in Object.values(SortType)" :key="sortType">

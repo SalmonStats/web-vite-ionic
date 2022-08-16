@@ -16,7 +16,7 @@ const props = defineProps<{
 
 <template>
   <IonItem>
-    <IonLabel>昼のみ記録</IonLabel>
+    <IonLabel>{{ t("parameters.night_less") }}</IonLabel>
     <IonToggle @ion-change="(value) => emit('nightless', value.detail.checked)" :checked="props.parameters.nightless">
     </IonToggle>
   </IonItem>

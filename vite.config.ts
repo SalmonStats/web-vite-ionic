@@ -9,6 +9,7 @@ export default defineConfig(({ command, mode }) => {
   return {
     server: {
       port: 8000,
+      open: true,
     },
     build: {
       rollupOptions: {

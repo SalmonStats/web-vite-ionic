@@ -43,7 +43,7 @@ function changedLang() {
     </IonItem>
     <IonItem>
       <IonLabel slot="start">{{ t("title.labels.languages") }}</IonLabel>
-      <IonToggle slot="end"></IonToggle>
+      <IonToggle slot="end" @ionChange="changedLang" :checked="locale === 'en'"></IonToggle>
     </IonItem>
   </IonItemGroup>
 </template>

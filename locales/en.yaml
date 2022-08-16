@@ -81,9 +81,15 @@ title:
 select:
   labels:
     salmon_id: ID
-    golden_ikura_num: 金イクラ納品数
-    ikura_num: イクラ獲得数
-    play_time: プレイ時間
+    golden_ikura_num: Golden Eggs
+    ikura_num: Power Eggs
+    play_time: Played Time
 ranks:
   grade: Grade
   weapons: Weapons
+parameters:
+  count: Counts
+  sort: Sort
+  minimum_golden_ikura_num: Min Golden Eggs
+  minimum_ikura_num: Min Power Eggs
+  night_less: Nightless

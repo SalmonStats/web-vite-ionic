@@ -104,6 +104,25 @@ export interface WaveResult {
   count: number;
 }
 
+interface Member {
+  nsaid: string;
+  nickname: string;
+  thumbnail_url: string;
+}
+
+export interface ResultDetail {
+  nightLess?: boolean;
+  event_type?: number;
+  water_level?: number;
+  golden_ikura_num: number;
+  golden_ikura_pop_num: number;
+  ikura_num: number;
+  members: Member[];
+  rank: number;
+  wave_id: number;
+  wave_rank?: number;
+}
+
 export interface JobResult {
   failure_waves: FailureWave[];
   is_clear: number;

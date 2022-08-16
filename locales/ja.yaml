@@ -87,3 +87,9 @@ select:
 ranks:
   grade: 評価
   weapons: ブキ
+parameters:
+  count: 取得件数
+  sort: 並び順
+  minimum_golden_ikura_num: 最小金イクラ納品数
+  minimum_ikura_num: 最小イクラ獲得数
+  night_less: 昼のみ記録

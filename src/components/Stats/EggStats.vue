@@ -2,8 +2,11 @@
 import { TotalResult, WaveResult } from '@/types/salmonstats';
 import { IonItem, IonLabel, IonItemGroup, IonToggle, IonListHeader, IonIcon, IonList } from '@ionic/vue';
 import { useI18n } from 'vue-i18n';
+import { useRoute } from 'vue-router';
 
 const { t } = useI18n()
+const router = useRoute()
+const { start_time } = router.params
 const props = defineProps<{
   totals: TotalResult
   results: WaveResult[][]
@@ -24,7 +27,7 @@ const results = props.results.reverse()
       <IonLabel>{{ t("results.total") }}</IonLabel>
     </IonListHeader>
     <template v-for="total in [totals.night, totals.nightLess]">
-      <IonItem button>
+      <IonItem button :router-link="`/schedules/${start_time}/totals?nightless=${total.nightless}`">
         <div class="coop-wave-result">
           <section>
             <IonLabel>{{ t(`results.${!total.nightless ? 'night' : 'nightless'}`) }}</IonLabel>
@@ -51,7 +54,8 @@ const results = props.results.reverse()
         </IonLabel>
       </IonListHeader>
       <template v-for="wave in waves">
-        <IonItem v-if="wave !== null" button>
+        <IonItem v-if="wave !== null" button
+          :router-link="`/schedules/${start_time}/waves?event_type=${wave.event_type}&water_level=${wave.water_level}`">
           <div class="coop-wave-result">
             <section>
               <IonLabel>{{ t(`wave_result.event_type.${wave.event_type}`) }}</IonLabel>

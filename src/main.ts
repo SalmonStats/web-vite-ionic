@@ -63,6 +63,8 @@ const app = createApp(App)
   .use(router)
   .use(i18n)
   .component("ApexCharts", VueApexCharts);
-router.isReady().then(() => {
+router.isReady().then(async () => {
   app.mount("#app");
+  const { registerSW } = await import("virtual:pwa-register");
+  registerSW({ immediate: true });
 });
