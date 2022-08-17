@@ -5,7 +5,8 @@ import {
   IonToolbar,
   IonIcon,
   IonSegmentButton,
-  IonSegment
+  IonSegment,
+
 } from '@ionic/vue';
 import { informationCircleOutline, eggOutline, ribbonOutline, statsChartOutline } from 'ionicons/icons';
 import { useI18n } from 'vue-i18n';
@@ -88,9 +89,6 @@ onMounted(async () => {
         <GradeStats :results=results.grade_results v-if="selected === SegmentType.GRADE" />
         <EggStats :results=results.wave_results :totals="results.total_results" v-if="selected === SegmentType.EGG" />
         <UnderConstruction v-if="selected === SegmentType.CHART" />
-      </template>
-      <template v-if="results === undefined">
-        <NowLoading />
       </template>
     </IonContent>
   </IonPage>

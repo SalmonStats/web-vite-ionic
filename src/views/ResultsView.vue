@@ -19,14 +19,14 @@ import { filterOutline } from 'ionicons/icons';
 import { useI18n } from 'vue-i18n';
 import CoopHeader from '@/components/CoopHeader.vue';
 import axios from 'axios';
-import { onMounted } from 'vue';
+import { onMounted, watchEffect } from 'vue';
 import { ref, Ref } from 'vue';
 import { Result } from '@/types/splatnet2';
 import CoopResultOverview from '@/components/CoopResultOverview.vue';
 import { Paginated, Parameters } from '@/types/common';
 import { OrderType, SortType } from '@/types/enum';
 import ModalButton from '../components/ModalButton.vue';
-import NowLoading from '@/components/NowLoading.vue';
+import IonLoadingContent from '@/components/Extensions/IonLoadingContent.vue';
 
 interface Props {
   nsaid?: string;
@@ -40,6 +40,7 @@ interface Props {
 }
 
 const { t } = useI18n()
+const isLoading: Ref<boolean> = ref<boolean>(false)
 const results: Ref<Result[]> = ref<Result[]>([])
 
 const props = withDefaults(defineProps<Props>(), {
@@ -78,8 +79,10 @@ async function onLoad(offset: number = 0) {
   console.log(params.toString())
   const url: string = `${import.meta.env.VITE_APP_URL}/results?${params.toString()}`
   const response: Paginated<Result> = (await axios.get(url)).data
-  response.results.forEach((result: Result) => {
-    results.value.push(result)
+  response.results.forEach((result: Result, index) => {
+    setTimeout(() => {
+      results.value.push(result)
+    }, index * 100)
   })
 }
 
@@ -108,9 +111,7 @@ async function setParams(value: Parameters) {
 }
 
 onMounted(async () => {
-  if (results.value.length === 0) {
-    await onLoad()
-  }
+  await onLoad()
 })
 </script>
 
@@ -118,23 +119,20 @@ onMounted(async () => {
   <IonPage>
     <CoopHeader :title="t('title.headers.results')" />
     <IonContent>
-      <ModalButton :parameters="parameters" @parameters="setParams" />
-      <IonRefresher @ion-refresh="onRefresh($event)" slot="fixed">
-        <IonRefresherContent></IonRefresherContent>
-      </IonRefresher>
-      <template v-if="results.length !== 0">
-        <IonList>
+      <IonLoadingContent :visible="results.length !== 0">
+        <IonRefresher @ion-refresh="onRefresh($event)" slot="fixed">
+          <IonRefresherContent></IonRefresherContent>
+        </IonRefresher>
+        <TransitionGroup appear name="results" tag="ion-list">
           <template v-for="result in results" :key="result.salmon_id">
             <CoopResultOverview :result="result" />
           </template>
-        </IonList>
-      </template>
-      <template v-if="results.length === 0">
-        <NowLoading />
-      </template>
-      <IonInfiniteScroll @ion-infinite="getResults">
-        <IonInfiniteScrollContent></IonInfiniteScrollContent>
-      </IonInfiniteScroll>
+        </TransitionGroup>
+        <IonInfiniteScroll @ion-infinite="getResults">
+          <IonInfiniteScrollContent></IonInfiniteScrollContent>
+        </IonInfiniteScroll>
+      </IonLoadingContent>
+      <ModalButton :parameters="parameters" @parameters="setParams" />
     </IonContent>
   </IonPage>
 </template>
@@ -154,5 +152,16 @@ ion-select {
 
 section {
   width: 100% !important;
+}
+
+.results-enter-active,
+.results-leave-active {
+  transition: all 1s ease;
+}
+
+.results-enter-from,
+.results-leave-to {
+  opacity: 0;
+  transform: translateX(30%);
 }
 </style>

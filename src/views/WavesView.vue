@@ -37,7 +37,7 @@ async function onLoad(offset: number = 0) {
   const url: string = (() => {
     const baseURL: string = `${import.meta.env.VITE_APP_URL}`
     // WAVE記録
-    if (nightless !== undefined) {
+    if (nightless !== undefined && nightless !== null) {
       const params: URLSearchParams = new URLSearchParams({
         nightless: nightless.toString()
       })

@@ -113,9 +113,6 @@ onIonViewDidEnter(async () => {
       <template v-if="player === undefined && account.nsaid === undefined">
         <SignInAlert />
       </template>
-      <template v-if="player === undefined && account.nsaid !== undefined">
-        <NowLoading />
-      </template>
     </IonContent>
   </IonPage>
 </template>
