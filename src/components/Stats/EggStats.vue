@@ -22,60 +22,58 @@ const results = props.results.reverse()
 </script>
 
 <template>
-  <IonList>
+  <IonListHeader mode="ios">
+    <IonLabel>{{ t("results.total") }}</IonLabel>
+  </IonListHeader>
+  <template v-for="total in [totals.night, totals.nightLess]">
+    <IonItem button :router-link="`/schedules/${start_time}/totals?nightless=${total.nightless}`">
+      <div class="coop-wave-result">
+        <section>
+          <IonLabel>{{ t(`results.${!total.nightless ? 'night' : 'nightless'}`) }}</IonLabel>
+          <IonLabel class="prob">
+            {{ (total.count / (totals.night.count + totals.nightLess.count) * 100).toFixed(3) }}
+          </IonLabel>
+        </section>
+        <section class="coop-wave-appearances">
+          <IonLabel class="golden-ikura num">
+            {{ total.golden_ikura_num }}
+          </IonLabel>
+          <IonLabel class="ikura num">
+            {{ total.ikura_num }}
+          </IonLabel>
+        </section>
+      </div>
+    </IonItem>
+
+  </template>
+  <template v-for="(waves, index) in results">
     <IonListHeader mode="ios">
-      <IonLabel>{{ t("results.total") }}</IonLabel>
+      <IonLabel>
+        {{ t(`wave_result.water_level.${2 - index}`) }}
+      </IonLabel>
     </IonListHeader>
-    <template v-for="total in [totals.night, totals.nightLess]">
-      <IonItem button :router-link="`/schedules/${start_time}/totals?nightless=${total.nightless}`">
+    <template v-for="wave in waves">
+      <IonItem v-if="wave !== null" button
+        :router-link="`/schedules/${start_time}/waves?event_type=${wave.event_type}&water_level=${wave.water_level}`">
         <div class="coop-wave-result">
           <section>
-            <IonLabel>{{ t(`results.${!total.nightless ? 'night' : 'nightless'}`) }}</IonLabel>
+            <IonLabel>{{ t(`wave_result.event_type.${wave.event_type}`) }}</IonLabel>
             <IonLabel class="prob">
-              {{ (total.count / (totals.night.count + totals.nightLess.count) * 100).toFixed(3) }}
+              {{ (wave.count / waves.map(wave => wave?.count ?? 0).sum() * 100).toFixed(3) }}
             </IonLabel>
           </section>
           <section class="coop-wave-appearances">
             <IonLabel class="golden-ikura num">
-              {{ total.golden_ikura_num }}
+              {{ wave.golden_ikura_num }}
             </IonLabel>
             <IonLabel class="ikura num">
-              {{ total.ikura_num }}
+              {{ wave.ikura_num }}
             </IonLabel>
           </section>
         </div>
       </IonItem>
-
     </template>
-    <template v-for="(waves, index) in results">
-      <IonListHeader mode="ios">
-        <IonLabel>
-          {{ t(`wave_result.water_level.${2 - index}`) }}
-        </IonLabel>
-      </IonListHeader>
-      <template v-for="wave in waves">
-        <IonItem v-if="wave !== null" button
-          :router-link="`/schedules/${start_time}/waves?event_type=${wave.event_type}&water_level=${wave.water_level}`">
-          <div class="coop-wave-result">
-            <section>
-              <IonLabel>{{ t(`wave_result.event_type.${wave.event_type}`) }}</IonLabel>
-              <IonLabel class="prob">
-                {{ (wave.count / waves.map(wave => wave?.count ?? 0).sum() * 100).toFixed(3) }}
-              </IonLabel>
-            </section>
-            <section class="coop-wave-appearances">
-              <IonLabel class="golden-ikura num">
-                {{ wave.golden_ikura_num }}
-              </IonLabel>
-              <IonLabel class="ikura num">
-                {{ wave.ikura_num }}
-              </IonLabel>
-            </section>
-          </div>
-        </IonItem>
-      </template>
-    </template>
-  </IonList>
+  </template>
 </template>
 
 <style lang="scss" scoped>

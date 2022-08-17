@@ -16,33 +16,31 @@ Array.prototype.sum = function () {
 </script>
 
 <template>
-  <IonList>
-    <IonListHeader mode="ios">
-      <IonLabel>
-        {{ t(`ranks.grade`) }}
-      </IonLabel>
-    </IonListHeader>
-    <template v-for="result in results">
-      <IonItem button :router-link="`/users/${result.nsaid}`" :class="`coop-rank-${result.rank}`">
-        <div class=" coop-grade-result">
-          <section class="coop-grade-result-player">
-            <IonLabel style="width: 24px; text-align: center;">{{ result.rank }}</IonLabel>
-            <IonAvatar>
-              <IonImg :src="result.thumbnail_url"></IonImg>
-            </IonAvatar>
-          </section>
-          <section class="coop-grade-result-player-name">
-            <IonLabel class="nsaid">{{ result.nsaid }}</IonLabel>
-            <IonLabel>{{ result.name }}</IonLabel>
-          </section>
-          <section class="coop-grade-result-count">
-            <IonLabel>{{ result.grade_point_max }}</IonLabel>
-            <IonLabel class="num">{{ result.shifts_worked }}</IonLabel>
-          </section>
-        </div>
-      </IonItem>
-    </template>
-  </IonList>
+  <IonListHeader mode="ios">
+    <IonLabel>
+      {{ t(`ranks.grade`) }}
+    </IonLabel>
+  </IonListHeader>
+  <template v-for="result in results">
+    <IonItem button :router-link="`/users/${result.nsaid}`" :class="`coop-rank-${result.rank}`">
+      <div class=" coop-grade-result">
+        <section class="coop-grade-result-player">
+          <IonLabel style="width: 24px; text-align: center;">{{ result.rank }}</IonLabel>
+          <IonAvatar>
+            <IonImg :src="result.thumbnail_url"></IonImg>
+          </IonAvatar>
+        </section>
+        <section class="coop-grade-result-player-name">
+          <IonLabel class="nsaid">{{ result.nsaid }}</IonLabel>
+          <IonLabel>{{ result.name }}</IonLabel>
+        </section>
+        <section class="coop-grade-result-count">
+          <IonLabel>{{ result.grade_point_max }}</IonLabel>
+          <IonLabel class="num">{{ result.shifts_worked }}</IonLabel>
+        </section>
+      </div>
+    </IonItem>
+  </template>
 </template>
 
 <style lang="scss" scoped>

@@ -19,6 +19,7 @@ import GradeStats from '@/components/Stats/GradeStats.vue';
 import InfoStats from '../components/Stats/InfoStats.vue';
 import NowLoading from '@/components/NowLoading.vue';
 import UnderConstruction from '@/components/UnderConstruction.vue';
+import IonLoadingContent from '@/components/Extensions/IonLoadingContent.vue';
 
 const { t } = useI18n()
 
@@ -84,8 +85,8 @@ onMounted(async () => {
           </template>
         </IonSegment>
       </IonToolbar>
+      <InfoStats :result=results?.job_results :bosses="results?.boss_results" v-if="selected === SegmentType.INFO" />
       <template v-if="results !== undefined">
-        <InfoStats :result=results.job_results :bosses="results.boss_results" v-if="selected === SegmentType.INFO" />
         <GradeStats :results=results.grade_results v-if="selected === SegmentType.GRADE" />
         <EggStats :results=results.wave_results :totals="results.total_results" v-if="selected === SegmentType.EGG" />
         <UnderConstruction v-if="selected === SegmentType.CHART" />

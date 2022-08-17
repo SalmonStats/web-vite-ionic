@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { BossResult, GradeResult, WaveResult } from '@/types/salmonstats';
 import { JobResult } from '@/types/salmonstats';
-import { IonItem, IonLabel, IonItemGroup, IonToggle, IonListHeader, IonIcon, IonList, IonAvatar, IonImg } from '@ionic/vue';
+import { IonItem, IonLabel, IonItemGroup, IonToggle, IonListHeader, IonIcon, IonList, IonAvatar, IonImg, IonSkeletonText } from '@ionic/vue';
 import { useI18n } from 'vue-i18n';
 import { bossURL } from '@/functions';
+import IonLoadingContent from '../Extensions/IonLoadingContent.vue';
+import JobResultItem from './Items/JobResultItem.vue';
+import BossResultItem from './Items/BossResultItem.vue';
 
 const { t } = useI18n()
 const props = defineProps<{
-  result: JobResult
-  bosses: BossResult[]
+  result?: JobResult
+  bosses?: BossResult[]
 }>()
 
 Array.prototype.sum = function () {
@@ -25,63 +28,14 @@ Array.prototype.sum = function () {
         {{ t("job_result.job") }}
       </IonLabel>
     </IonListHeader>
-    <IonItem>
-      <div>
-        <section class="coop-result-key">
-          <IonLabel>{{ t("title.labels.shifts_worked") }}</IonLabel>
-          <IonLabel class="prob">{{ (result.is_clear / (result.is_failure + result.is_clear) * 100).toFixed(3) }}
-          </IonLabel>
-        </section>
-        <section class="coop-result-values">
-          <IonLabel class="num">{{ result.is_clear + result.is_failure }}</IonLabel>
-          <!-- <IonLabel class="num">{{ wave.time_limit }}</IonLabel> -->
-        </section>
-      </div>
-    </IonItem>
-    <template v-for="(wave, index) in result.failure_waves">
-      <IonItem>
-        <div>
-          <section class="coop-result-key">
-            <IonLabel>WAVE {{ index + 1 }}</IonLabel>
-          </section>
-          <section class="coop-result-column">
-            <IonLabel>{{ t("job_result.wipe_out") }}</IonLabel>
-            <IonLabel>{{ t("job_result.time_limit") }}</IonLabel>
-          </section>
-          <section class="coop-result-values">
-            <IonLabel class="num">{{ wave.wipe_out }}</IonLabel>
-            <IonLabel class="num">{{ wave.time_limit }}</IonLabel>
-          </section>
-        </div>
-      </IonItem>
-    </template>
+    <JobResultItem :result=result />
+    <IonListHeader mode="ios">
+      <IonLabel>
+        {{ t(`title.headers.salmon_ids`) }}
+      </IonLabel>
+    </IonListHeader>
+    <BossResultItem :results=bosses />
   </IonList>
-  <IonListHeader mode="ios">
-    <IonLabel>
-      {{ t(`title.headers.salmon_ids`) }}
-    </IonLabel>
-  </IonListHeader>
-  <template v-for="(boss, index) in bosses">
-    <IonItem>
-      <div>
-        <section class="coop-result-img">
-          <IonImg :src="bossURL(index)" style="width: 40px; height: 40px; aspect-ratio: 1;"></IonImg>
-        </section>
-        <section class="coop-result-key">
-          <IonLabel>{{ t(`salmonIds.${index}`) }}</IonLabel>
-          <IonLabel class="prob">{{ (boss.boss_kill_counts / boss.boss_counts * 100).toFixed(3) }}</IonLabel>
-        </section>
-        <section class="coop-result-column">
-          <IonLabel>{{ t("salmonIds.results.defeated") }}</IonLabel>
-          <IonLabel>{{ t("salmonIds.results.appearances") }}</IonLabel>
-        </section>
-        <section class="coop-result-values">
-          <IonLabel class="num">{{ boss.boss_kill_counts }}</IonLabel>
-          <IonLabel class="num">{{ boss.boss_counts }}</IonLabel>
-        </section>
-      </div>
-    </IonItem>
-  </template>
 </template>
 
 <style lang="scss" scoped>

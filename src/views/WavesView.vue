@@ -15,10 +15,12 @@ import { useRoute } from 'vue-router';
 import { ResultDetail } from '@/types/salmonstats';
 import WaveResult from '@/components/Stats/WaveResult.vue';
 import WaveSegment from '@/components/Stats/WaveSegment.vue';
+import IonLoadingContent from '@/components/Extensions/IonLoadingContent.vue';
 
 const { t } = useI18n()
 const router = useRoute()
 const waveId: Ref<number> = ref<number>(0)
+const stacks: Ref<ResultDetail[]> = ref<ResultDetail[]>([])
 const results: Ref<ResultDetail[]> = ref<ResultDetail[]>([])
 
 const { event_type, water_level, nightless } = router.query
@@ -32,8 +34,6 @@ const title: string = (() => {
 
 async function onLoad(offset: number = 0) {
   // パラメーターから検索条件を作成
-  console.log(event_type, water_level, nightless)
-
   const url: string = (() => {
     const baseURL: string = `${import.meta.env.VITE_APP_URL}`
     // WAVE記録
@@ -52,16 +52,27 @@ async function onLoad(offset: number = 0) {
     return `${baseURL}/waves/${start_time}?${params.toString()}`
   })()
 
-  const response: ResultDetail[] = (await axios.get(url)).data
-  response.forEach((result: ResultDetail) => {
-    results.value.push(result)
+  stacks.value = (await axios.get(url)).data
+  stacks.value.forEach((result: ResultDetail, index) => {
+    setTimeout(() => {
+      results.value.push(result)
+    }, 50 * index)
+  })
+}
+
+function segmentChanged(value: number) {
+  waveId.value = Number(value)
+  // 一度空っぽにする
+  results.value = []
+  stacks.value.filter((result: ResultDetail) => result.wave_id + 1 === waveId.value || waveId.value === 0).forEach((result: ResultDetail, index) => {
+    setTimeout(() => {
+      results.value.push(result)
+    }, 50 * index)
   })
 }
 
 onIonViewDidEnter(async () => {
-  if (results.value.length === 0) {
-    await onLoad()
-  }
+  await onLoad()
 })
 </script>
 
@@ -70,29 +81,29 @@ onIonViewDidEnter(async () => {
     <CoopHeader :title="title" />
     <IonContent>
       <template v-if="[0, 5, 6].includes(Number(event_type))">
-        <WaveSegment :waveId="waveId" @segmentChanged="(value) => waveId = Number(value)" />
+        <WaveSegment :waveId="waveId" @segmentChanged="segmentChanged" />
       </template>
-      <template v-for="result in results">
-        <WaveResult :result="result" :rank="waveId === 0 ? result.rank : (result.wave_rank ?? 0)"
-          v-show="(waveId === 0 || result.wave_id === waveId - 1)" />
-      </template>
+      <IonLoadingContent :visible="results.length !== 0">
+        <TransitionGroup name="results" tag="ion-list">
+          <template v-for="result in results" :key="result.members">
+            <WaveResult :result="result" :rank="waveId === 0 ? result.rank : (result.wave_rank ?? 0)"
+              v-if="result.wave_id + 1 === waveId || waveId === 0" />
+          </template>
+        </TransitionGroup>
+      </IonLoadingContent>
     </IonContent>
   </IonPage>
 </template>
 
 <style lang="scss" scoped>
-div {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  margin: 0 auto;
+.results-enter-active,
+.results-leave-active {
+  transition: all 0.5s ease-in;
 }
 
-ion-select {
-  width: 100% !important;
-}
-
-section {
-  width: 100% !important;
+.results-enter-from,
+.results-leave-to {
+  opacity: 0;
+  transform: translateX(50%);
 }
 </style>
