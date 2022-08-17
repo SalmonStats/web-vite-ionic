@@ -104,7 +104,7 @@ onIonViewDidEnter(async () => {
 <template>
   <IonPage>
     <CoopButton :account="account" @updated="(value) => account = value"
-      v-if="type === UserType.SELF && nsaid !== undefined" />
+      v-if="type === UserType.SELF && account.iksm_session.length !== 0" />
     <CoopHeader :title="player?.nickname ?? t('title.headers.loading')" />
     <IonContent>
       <IonToolbar>
@@ -116,27 +116,12 @@ onIonViewDidEnter(async () => {
           </template>
         </IonSegment>
       </IonToolbar>
-      <SignInAlert />
-
-    </IonContent>
-    <!-- <IonContent>
-      <IonToolbar>
-        <IonSegment :value="selected" @ionChange="(value: CustomEvent) => selected = value.detail.value">
-          <template v-for="segment in segments">
-            <IonSegmentButton :value="segment.value">
-              <IonIcon :src="segment.icon"></IonIcon>
-            </IonSegmentButton>
-          </template>
-        </IonSegment>
-      </IonToolbar>
+      <SignInAlert v-if="nsaid === undefined" />
       <CoopRecord :results="player?.stage_results" v-if="selected === SegmentType.INFO" />
       <ResultsView :nsaid="nsaid" v-show="selected === SegmentType.RESULTS" />
       <UnderConstruction v-if="selected === SegmentType.SCHEDULES" />
       <UnderConstruction v-if="selected === SegmentType.CHARTS" />
-      <template v-if="player === undefined && account.nsaid === undefined">
-        <SignInAlert />
-      </template>
-    </IonContent> -->
+    </IonContent>
   </IonPage>
 </template>
 
