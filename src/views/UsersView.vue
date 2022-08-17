@@ -24,6 +24,10 @@ import ResultsView from './ResultsView.vue';
 import SignInAlert from '@/components/SignInAlert.vue';
 import UnderConstruction from '@/components/UnderConstruction.vue';
 
+enum UserType {
+  SELF,
+  OTHER
+}
 enum SegmentType {
   INFO = 'info',
   RESULTS = 'results',
@@ -43,14 +47,21 @@ const account: Ref<SplatNet2> = ref<SplatNet2>((() => {
   return JSON.parse(localStorage.getItem('account') ?? "{}") as SplatNet2
 })())
 
-const nsaid: string = (() => {
-  // パラメータからIDを取得する
-  // なければログイン情報から取得する
+// ログインしているユーザーのタイプを表示する
+const type: UserType = (() => {
+  if (router.params.nsaid === undefined) {
+    return UserType.SELF
+  }
+  return UserType.OTHER
+})()
+
+// ログイン状態のチェックに使える
+const nsaid: string | undefined = (() => {
+  console.log(router.params.nsaid, account.value.nsaid)
   return router.params.nsaid as string ?? account.value.nsaid
 })()
 
 const player: Ref<Player | undefined> = ref<Player>()
-
 const selected: Ref<SegmentType> = ref<SegmentType>(SegmentType.INFO)
 
 const segments: Segment[] = [
@@ -92,7 +103,8 @@ onIonViewDidEnter(async () => {
 
 <template>
   <IonPage>
-    <CoopButton :account="account" @updated="(value) => account = value" />
+    <CoopButton :account="account" @updated="(value) => account = value"
+      v-if="type === UserType.SELF && nsaid !== undefined" />
     <CoopHeader :title="player?.nickname ?? t('title.headers.loading')" />
     <IonContent>
       <IonToolbar>
@@ -104,16 +116,27 @@ onIonViewDidEnter(async () => {
           </template>
         </IonSegment>
       </IonToolbar>
-      <template v-if="player !== undefined">
-        <CoopRecord :results="player.stage_results" v-if="selected === SegmentType.INFO" />
-        <ResultsView :nsaid="nsaid" v-show="selected === SegmentType.RESULTS" />
-        <UnderConstruction v-if="selected === SegmentType.SCHEDULES" />
-        <UnderConstruction v-if="selected === SegmentType.CHARTS" />
-      </template>
+      <SignInAlert />
+
+    </IonContent>
+    <!-- <IonContent>
+      <IonToolbar>
+        <IonSegment :value="selected" @ionChange="(value: CustomEvent) => selected = value.detail.value">
+          <template v-for="segment in segments">
+            <IonSegmentButton :value="segment.value">
+              <IonIcon :src="segment.icon"></IonIcon>
+            </IonSegmentButton>
+          </template>
+        </IonSegment>
+      </IonToolbar>
+      <CoopRecord :results="player?.stage_results" v-if="selected === SegmentType.INFO" />
+      <ResultsView :nsaid="nsaid" v-show="selected === SegmentType.RESULTS" />
+      <UnderConstruction v-if="selected === SegmentType.SCHEDULES" />
+      <UnderConstruction v-if="selected === SegmentType.CHARTS" />
       <template v-if="player === undefined && account.nsaid === undefined">
         <SignInAlert />
       </template>
-    </IonContent>
+    </IonContent> -->
   </IonPage>
 </template>
 

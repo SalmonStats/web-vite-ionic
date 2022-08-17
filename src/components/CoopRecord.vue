@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { IonItem, IonLabel, IonImg } from '@ionic/vue';
+import { IonItem, IonLabel, IonSkeletonText } from '@ionic/vue';
 import { useI18n } from 'vue-i18n'
 import { Results } from '@/types/salmonstats';
 const { t } = useI18n()
 
 const props = defineProps<{
-  results: Results[]
+  results?: Results[]
 }>()
 </script>
 
 <template>
-  <template v-for="result in results" :key="result.stage_id">
+  <template v-for="result in results" :key="result.stage_id" v-if="results !== undefined">
     <IonItem>
       <div class="coop-player-records">
         <section class="coop-stage-information">
@@ -19,6 +19,23 @@ const props = defineProps<{
         <section class="coop-player-stage-record">
           <IonLabel>{{ t("results.night") }} {{ result.night.team_results.golden_ikura_num ?? '-' }}</IonLabel>
           <IonLabel>{{ t("results.nightless") }} {{ result.nightless.team_results.golden_ikura_num ?? '-' }}</IonLabel>
+        </section>
+      </div>
+    </IonItem>
+  </template>
+  <template v-for="stageId in [5000, 5001, 5002, 5003, 5004]" :key="stageId" v-if="results === undefined">
+    <IonItem>
+      <div class="coop-player-records">
+        <section class="coop-stage-information">
+          <IonLabel>{{ t(`schedule.stage.${stageId}`) }}</IonLabel>
+        </section>
+        <section class="coop-player-stage-record">
+          <IonLabel>
+            <IonSkeletonText></IonSkeletonText>
+          </IonLabel>
+          <IonLabel>
+            <IonSkeletonText></IonSkeletonText>
+          </IonLabel>
         </section>
       </div>
     </IonItem>
