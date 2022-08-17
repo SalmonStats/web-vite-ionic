@@ -4,6 +4,7 @@ import { contrastOutline, languageOutline, logoTwitter, snowOutline } from 'ioni
 import { onMounted } from 'vue';
 import { useI18n } from 'vue-i18n'
 import SignInButton from '@/components/SignInButton.vue'
+import TwitterButton from './TwitterButton.vue';
 
 interface Props {
   title: string

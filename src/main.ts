@@ -35,6 +35,12 @@ import ja from "/locales/ja.yaml";
 import en from "/locales/en.yaml";
 import { getDeviceThemeParams } from "@/types/common/appearances";
 
+/* Firebase */
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "./firebase.config";
+const firebaseApp = initializeApp(firebaseConfig);
+export { firebaseApp };
+
 import VueApexCharts from "vue3-apexcharts";
 
 /* ローカルデータを取得 */

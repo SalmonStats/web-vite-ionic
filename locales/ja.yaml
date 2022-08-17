@@ -46,6 +46,7 @@ messages:
     login: "%{nickname}でログインしました"
   error:
     "The request does not satisfy the schema": "入力されたURLが正しくありません"
+    "The provided session_token_code is invalid": "入力されたURLが有効ではありません"
     "The provided session_token_code is expired": "入力されたURLは有効期限切れです"
     "The provided grant is invalid": "指定された権限は利用不可です"
     "Client authentication failed": "クライアントIDが誤っています"

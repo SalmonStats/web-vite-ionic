@@ -24,7 +24,7 @@ async function dismiss() {
       </IonButtons>
     </IonToolbar>
   </IonHeader>
-  <IonContent>
+  <IonContent fullscreen>
     <IonList>
       <CoopAccount />
       <Appearances />

@@ -11,7 +11,6 @@ async function present() {
     component: SignInView,
     swipeToClose: true,
   });
-
   modal.present()
 }
 </script>
