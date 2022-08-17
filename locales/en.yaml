@@ -57,6 +57,7 @@ messages:
 title:
   labels:
     nintendo: Nintendo
+    twitter: Twitter
     login: Sign In
     results: Results
     theme: Theme

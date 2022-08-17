@@ -23,10 +23,6 @@ async function signIn() {
       <IonButton @click="signIn">
         <IonLabel>{{ t("title.labels.login") }}</IonLabel>
       </IonButton>
-      <IonLabel>ログイン方法について</IonLabel>
-      <IonTextarea>
-        ログインにはGoogle Chromeが必要になります. iPhoneやiPadのブラウザ(Safari)ではログインできないのでApp StoreからGoogle Chromeをインストールしてください.
-      </IonTextarea>
     </div>
   </IonContent>
 </template>

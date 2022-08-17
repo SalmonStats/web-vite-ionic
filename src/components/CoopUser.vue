@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { IonHeader, IonToolbar, IonButton, IonButtons, IonTitle, IonIcon, IonContent, IonItem, IonLabel, IonImg, IonAvatar, IonItemGroup } from '@ionic/vue';
 import { accessibilityOutline, openOutline } from 'ionicons/icons';
-import { onMounted, Ref, ref } from 'vue';
 import { useI18n } from 'vue-i18n'
-import dayjs from 'dayjs';
-import { weaponURL } from '@/functions';
 import { Player } from '@/types/salmonstats';
 
 const { t } = useI18n()

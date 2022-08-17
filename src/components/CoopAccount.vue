@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { IonButton, IonIcon, IonItem, IonLabel, IonItemGroup, IonInput, toastController, IonListHeader, isPlatform, IonBackdrop, IonText } from '@ionic/vue';
 import axios, { AxiosError } from 'axios';
-import { openOutline, alertCircleOutline } from 'ionicons/icons';
 import { APIError, SplatNet2 } from '@/types/common';
 import { onMounted, Ref, ref } from 'vue';
 import { useI18n } from 'vue-i18n'
-import { modalController } from '@ionic/core';
-import TutorialVue from '@/views/Tutorial.vue';
+import TwitterOAuth from './OAuth/TwitterOAuth.vue';
 const { t } = useI18n()
 
 const videoURL: string = "https://video.twimg.com/ext_tw_video/1559752357776220160/pu/vid/720x1560/OVXVkRMRRXEO2hfb.mp4"
@@ -75,13 +73,14 @@ async function signIn() {
   <IonBackdrop :visible="true" :tappable="false" v-if="inProgress"></IonBackdrop>
   <IonItemGroup>
     <template v-if="isPlatform('ios')">
+      <TwitterOAuth />
     </template>
     <template v-if="!isPlatform('ios')">
       <IonListHeader lines="none" mode="ios">
         <IonLabel>{{ t("title.labels.nintendo") }}</IonLabel>
       </IonListHeader>
       <IonButton expand="block" @click="authorize">
-        <IonLabel slot="start">{{ t("title.labels.login") }}</IonLabel>
+        <IonLabel>{{ t("title.labels.login") }}</IonLabel>
       </IonButton>
       <IonItem>
         <IonInput placeholder="リンクのアドレスを貼り付けてください" v-model="session_token_code" type="password" @ionChange="signIn">
