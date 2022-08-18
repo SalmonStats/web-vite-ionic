@@ -54,18 +54,18 @@ async function signIn() {
     const user = new Twitter(await signInWithPopup(auth, provider))
     // 連携しているTwitterアカウントをSalmon Statsから検索する
     const url: string = `${import.meta.env.VITE_APP_URL}/users`
-    // const parameters = JSON.stringify(user)
-    // const headers = {
-    //   'Accept': 'application/json',
-    //   'Content-Type': 'application/json'
-    // }
-    // const accounts: SplatNet2[] = (await (await fetch(url, {
-    //   method: "POST",
-    //   headers: headers,
-    //   body: parameters
-    // })).json()).accounts.map((account: SplatNet2) => account as SplatNet2)
+    const parameters = JSON.stringify(user)
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+    const accounts: SplatNet2[] = (await (await fetch(url, {
+      method: "POST",
+      headers: headers,
+      body: parameters
+    })).json()).accounts.map((account: SplatNet2) => account as SplatNet2)
     // 仮データを保存(将来的にフォーマットを統一したい)
-    // localStorage.setItem("salmon_stats_accounts", JSON.stringify(accounts))
+    localStorage.setItem("salmon_stats_accounts", JSON.stringify(accounts))
   } catch (error) {
   }
 }

@@ -16,10 +16,8 @@ import CoopButton from '@/components/CoopButton.vue';
 import { SplatNet2 } from '@/types/common';
 import { Player } from '@/types/salmonstats';
 import { onMounted, Ref, ref } from 'vue';
-import CoopUser from '@/components/CoopUser.vue';
 import CoopRecord from '@/components/CoopRecord.vue';
 import { useRoute } from 'vue-router';
-import NowLoading from '@/components/NowLoading.vue';
 import ResultsView from './ResultsView.vue';
 import SignInAlert from '@/components/SignInAlert.vue';
 import UnderConstruction from '@/components/UnderConstruction.vue';
@@ -57,7 +55,6 @@ const type: UserType = (() => {
 
 // ログイン状態のチェックに使える
 const nsaid: string | undefined = (() => {
-  console.log(router.params.nsaid, account.value.nsaid)
   return router.params.nsaid as string ?? account.value.nsaid
 })()
 
@@ -104,7 +101,7 @@ onIonViewDidEnter(async () => {
 <template>
   <IonPage>
     <CoopButton :account="account" @updated="(value) => account = value"
-      v-if="type === UserType.SELF && account.iksm_session.length !== 0" />
+      v-if="type === UserType.SELF && account.iksm_session !== undefined && account.iksm_session.length !== 0" />
     <CoopHeader :title="player?.nickname ?? t('title.headers.loading')" />
     <IonContent>
       <IonToolbar>
