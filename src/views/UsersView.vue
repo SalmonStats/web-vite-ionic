@@ -42,7 +42,9 @@ const router = useRoute()
 const { t } = useI18n()
 
 const account: Ref<SplatNet2> = ref<SplatNet2>((() => {
-  return JSON.parse(localStorage.getItem('account') ?? "{}") as SplatNet2
+  const account: SplatNet2 = JSON.parse(localStorage.getItem('account') ?? "{}") as SplatNet2
+  console.log("From localStorage:", account)
+  return account
 })())
 
 // ログインしているユーザーのタイプを表示する
@@ -92,6 +94,12 @@ async function onLoad() {
   }
 }
 
+function onUpdated(value: SplatNet2) {
+  console.log("Emit", value)
+  account.value = value
+  localStorage.setItem('account', JSON.stringify(value))
+}
+
 // 表示される度に実行される
 onIonViewDidEnter(async () => {
   await onLoad()
@@ -100,7 +108,7 @@ onIonViewDidEnter(async () => {
 
 <template>
   <IonPage>
-    <CoopButton :account="account" @updated="(value) => account = value"
+    <CoopButton :account="account" @updated="onUpdated"
       v-if="type === UserType.SELF && account.iksm_session !== undefined && account.iksm_session.length !== 0" />
     <CoopHeader :title="player?.nickname ?? t('title.headers.loading')" />
     <IonContent>
