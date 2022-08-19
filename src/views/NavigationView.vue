@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet, IonModal } from '@ionic/vue';
-import { earthOutline, pieChartOutline, trailSignOutline, personOutline, searchOutline } from 'ionicons/icons';
-import SignInView from './SignInView.vue';
+import { earthOutline, pieChartOutline, trailSignOutline, personOutline, searchOutline, trendingUpOutline } from 'ionicons/icons';
 </script>
 
 <template>
@@ -17,6 +16,11 @@ import SignInView from './SignInView.vue';
         <IonTabButton tab="schedules" href="/schedules">
           <IonIcon :icon="trailSignOutline" />
           <IonLabel>Schedules</IonLabel>
+        </IonTabButton>
+
+        <IonTabButton tab="tournaments" href="/tournaments">
+          <IonIcon :icon="trendingUpOutline" />
+          <IonLabel>Tournaments</IonLabel>
         </IonTabButton>
 
         <IonTabButton tab="search" href="/search">

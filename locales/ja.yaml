@@ -64,9 +64,16 @@ title:
     theme: テーマ
     appearances: 外観
     languages: 言語
-    shifts_worked: バイト回数
+    shifts_worked: バイト回数 %{count}
     login_required: 任天堂アカウントとの連携が必要です
     construction: この機能は現在開発中です
+    remind_start_time: 開催まで残り %{time}
+    remind_end_time: 終了まで残り %{time}
+    coming_soon: 近日開催
+    holding: 開催中
+    rank: 現在のランキング
+    supplied_weapon_counts: 支給ブキ数 %{count}
+    estimated_complete_counts: 推定所要回数 %{count}
   headers:
     account: アカウント
     login: ログイン

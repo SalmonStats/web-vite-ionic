@@ -35,6 +35,17 @@ import ja from "/locales/ja.yaml";
 import en from "/locales/en.yaml";
 import { getDeviceThemeParams } from "@/types/common/appearances";
 
+/* DayJS */
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+import duration from "dayjs/plugin/duration";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.extend(duration);
+dayjs.tz.setDefault(dayjs.tz.guess());
+
 /* Firebase */
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./firebase.config";

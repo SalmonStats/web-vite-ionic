@@ -54,6 +54,7 @@ async function signIn() {
         message: t("messages.success.login", { nickname: account.nickname }),
         duration: 2000
       })
+    console.log(account)
     // アカウント情報の保存
     localStorage.setItem('account', JSON.stringify(account))
     return toast.present()

@@ -63,9 +63,16 @@ title:
     theme: Theme
     appearances: Appearances
     languages: Languages
-    shifts_worked: Shifts worked
+    shifts_worked: Shifts worked %{count}
     login_required: Nintendo account login is required.
     construction: This feature is under construction.
+    remind_start_time: Reminds %{time}
+    remind_end_time: Reminds %{time}
+    coming_soon: Coming soon
+    holding: In session
+    rank: Ranking
+    supplied_weapon_counts: Supplied %{count}
+    estimated_complete_counts: Estimated %{count}
   headers:
     account: Account
     login: Sign In

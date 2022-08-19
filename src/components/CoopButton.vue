@@ -28,6 +28,7 @@ async function authorize(session_token: string): Promise<SplatNet2> {
   }
 
   const account = (await axios.post(url, parameters)).data as SplatNet2
+  console.log(account)
   // アカウントの更新を通知する
   emit('updated', account)
   return account
