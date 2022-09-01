@@ -18,10 +18,10 @@ import { earthOutline, pieChartOutline, trailSignOutline, personOutline, searchO
           <IonLabel>Schedules</IonLabel>
         </IonTabButton>
 
-        <IonTabButton tab="tournaments" href="/tournaments">
+        <!-- <IonTabButton tab="tournaments" href="/tournaments">
           <IonIcon :icon="trendingUpOutline" />
           <IonLabel>Tournaments</IonLabel>
-        </IonTabButton>
+        </IonTabButton> -->
 
         <IonTabButton tab="search" href="/search">
           <IonIcon :icon="searchOutline" />
